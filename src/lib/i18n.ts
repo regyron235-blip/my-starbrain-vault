@@ -43,17 +43,17 @@ export const CURRENCY_SYMBOL: Record<CurrencyCode, string> = {
 /** Real-money price in USD for each in-game tag (B/M).
  *  Calibrated to UA OLX market: 1 USD ≈ 41 ₴, target range 25–500 ₴ for Secret pets. */
 export const REAL_PRICE_USD: Record<string, number> = {
-  "10B":  12,   // ~500 ₴
-  "2.5B": 8,    // ~330 ₴
-  "1B":   6,    // ~250 ₴
-  "750M": 5,    // ~205 ₴
-  "500M": 4,    // ~165 ₴
-  "250M": 3,    // ~125 ₴
-  "160M": 2.4,  // ~100 ₴
-  "150M": 2,    // ~80 ₴
-  "100M": 1.5,  // ~60 ₴
-  "80M":  1.2,  // ~50 ₴
-  "50M":  0.8,  // ~33 ₴
+  "10B":  2.4,  // ~100 ₴
+  "2.5B": 1.8,  // ~75 ₴
+  "1B":   1.5,  // ~60 ₴
+  "750M": 1.2,  // ~50 ₴
+  "500M": 1.0,  // ~40 ₴
+  "250M": 0.8,  // ~33 ₴
+  "160M": 0.6,  // ~25 ₴
+  "150M": 0.5,  // ~20 ₴
+  "100M": 0.4,  // ~16 ₴
+  "80M":  0.3,  // ~12 ₴
+  "50M":  0.25, // ~10 ₴
 };
 
 const t = <T extends Record<Lang, string>>(o: T) => o;
