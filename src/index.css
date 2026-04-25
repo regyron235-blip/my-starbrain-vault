@@ -8,35 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark brainrot theme by default */
+    --background: 230 25% 7%;
+    --foreground: 220 20% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 230 22% 11%;
+    --card-foreground: 220 20% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 230 22% 11%;
+    --popover-foreground: 220 20% 96%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 262 83% 65%;
+    --primary-foreground: 220 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 230 18% 16%;
+    --secondary-foreground: 220 20% 96%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 230 18% 16%;
+    --muted-foreground: 220 10% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 199 95% 55%;
+    --accent-foreground: 220 20% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 230 18% 18%;
+    --input: 230 18% 18%;
+    --ring: 262 83% 65%;
 
-    --radius: 0.5rem;
+    --legendary: 350 90% 60%;
+    --epic: 280 85% 65%;
+    --rare: 210 90% 60%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 65%), hsl(199 95% 55%));
+    --gradient-card: linear-gradient(160deg, hsl(230 22% 13%), hsl(230 25% 9%));
+    --shadow-glow: 0 10px 40px -10px hsl(262 83% 65% / 0.4);
+    --shadow-card: 0 8px 24px -8px hsl(230 50% 2% / 0.6);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
