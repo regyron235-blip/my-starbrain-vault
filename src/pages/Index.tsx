@@ -66,6 +66,7 @@ const Index = () => {
   const [section, setSection] = useState<Section>("catalog");
   const [query, setQuery] = useState("");
   const [lang, setLang] = useState<Lang>("ua");
+  const [selected, setSelected] = useState<Brainrot | null>(null);
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
   const filtered = useMemo(
@@ -178,12 +179,20 @@ const Index = () => {
             setQuery={setQuery}
             t={t}
             lang={lang}
+            onSelect={setSelected}
           />
         )}
         {section === "guide" && <GuideSection lang={lang} t={t} />}
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
       </main>
+
+      <BrainrotDialog
+        brainrot={selected}
+        onClose={() => setSelected(null)}
+        t={t}
+        lang={lang}
+      />
     </div>
   );
 };
