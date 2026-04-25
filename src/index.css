@@ -37,9 +37,12 @@ All colors MUST be HSL.
     --input: 230 18% 18%;
     --ring: 262 83% 65%;
 
-    --legendary: 350 90% 60%;
-    --epic: 280 85% 65%;
-    --rare: 210 90% 60%;
+    /* Steal a Brainrot rarity tiers */
+    --secret: 350 95% 58%;
+    --brainrot-god: 45 100% 55%;
+    --og: 160 85% 50%;
+    --mythic: 280 85% 65%;
+    --legendary: 25 95% 55%;
 
     --gradient-primary: linear-gradient(135deg, hsl(262 83% 65%), hsl(199 95% 55%));
     --gradient-card: linear-gradient(160deg, hsl(230 22% 13%), hsl(230 25% 9%));
