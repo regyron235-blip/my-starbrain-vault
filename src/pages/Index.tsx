@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
-  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X,
+  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
