@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
-  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X,
+  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -137,15 +137,38 @@ const Index = () => {
           <Globe className="h-4 w-4 text-muted-foreground" />
         </button>
 
-        <div className="mt-auto rounded-xl border border-border bg-secondary/50 p-4 text-xs text-muted-foreground">
-          {t("topNote")}
-        </div>
+        <a
+          href="https://t.me/sniper_TY"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto flex items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 p-3 text-sm font-semibold text-foreground hover:bg-primary/20 transition-colors"
+        >
+          <Send className="h-4 w-4 text-primary shrink-0" />
+          <span className="min-w-0 truncate">@sniper_TY</span>
+        </a>
       </aside>
 
       {/* Main */}
-      <main className="flex-1 p-6 md:p-10">
+      <main className="flex-1 p-4 md:p-10 min-w-0">
         {/* Mobile top bar */}
-        <div className="md:hidden mb-6 space-y-3">
+        <div className="md:hidden mb-5 space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <h1
+              className="text-xl font-black tracking-tight bg-clip-text text-transparent"
+              style={{ backgroundImage: "var(--gradient-primary)" }}
+            >
+              {t("brand")}
+            </h1>
+            <a
+              href="https://t.me/sniper_TY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-foreground"
+            >
+              <Send className="h-3.5 w-3.5 text-primary" />
+              @sniper_TY
+            </a>
+          </div>
           <button
             onClick={() => setLangOpen(true)}
             className="flex w-full items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm"
@@ -219,13 +242,13 @@ const CatalogSection = ({
   onSelect: (b: Brainrot) => void;
 }) => (
   <>
-    <header className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <header className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-          <Crown className="h-8 w-8 text-brainrot-god" />
+        <h2 className="text-2xl md:text-4xl font-bold mb-2 flex items-center gap-2 md:gap-3">
+          <Crown className="h-6 w-6 md:h-8 md:w-8 text-brainrot-god" />
           {t("catalogTitle")}
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-sm md:text-base text-muted-foreground">
           {t("found")} {filtered.length} {t("pets")}
         </p>
       </div>
@@ -240,13 +263,13 @@ const CatalogSection = ({
       </div>
     </header>
 
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
       {filtered.map((b) => {
         const color = RARITY_HSL[b.rarity];
         return (
           <article
             key={b.name}
-            className="group rounded-2xl border-2 p-5 transition-all hover:-translate-y-1"
+            className="group rounded-2xl border-2 p-3 md:p-5 transition-all hover:-translate-y-1"
             style={{
               backgroundImage: "var(--gradient-card)",
               boxShadow: "var(--shadow-card)",
@@ -262,7 +285,7 @@ const CatalogSection = ({
             }}
           >
             <div
-              className="text-center mb-3 rounded-lg py-1.5 font-black text-xs tracking-widest"
+              className="text-center mb-2 md:mb-3 rounded-lg py-1 md:py-1.5 font-black text-[10px] md:text-xs tracking-widest"
               style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
             >
               {RARITY_LABEL[b.rarity]}
@@ -271,7 +294,7 @@ const CatalogSection = ({
             <button
               type="button"
               onClick={() => onSelect(b)}
-              className="flex items-center justify-center h-40 mb-4 w-full"
+              className="flex items-center justify-center h-24 md:h-40 mb-3 md:mb-4 w-full"
               aria-label={b.name}
             >
               <img
@@ -284,23 +307,23 @@ const CatalogSection = ({
               />
             </button>
 
-            <h3 className="text-center font-bold text-lg mb-3 leading-tight">{b.name}</h3>
+            <h3 className="text-center font-bold text-sm md:text-lg mb-2 md:mb-3 leading-tight line-clamp-2 min-h-[2.5em]">{b.name}</h3>
 
-            <div className="flex items-center justify-between text-sm mb-4 px-1">
-              <span className="flex items-center gap-1 font-semibold" style={{ color: `hsl(${color})` }}>
-                <Zap className="h-3.5 w-3.5" />
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-xs md:text-sm mb-3 md:mb-4 px-1">
+              <span className="flex items-center gap-1 font-semibold truncate" style={{ color: `hsl(${color})` }}>
+                <Zap className="h-3 w-3 md:h-3.5 md:w-3.5 shrink-0" />
                 {formatIncome(b.income, t("perSec"))}
               </span>
-              <span className="font-semibold text-foreground">{priceFor(b)}</span>
+              <span className="font-semibold text-foreground truncate">{priceFor(b)}</span>
             </div>
 
             <Button
               type="button"
               onClick={() => onSelect(b)}
-              className="w-full"
+              className="w-full h-9 md:h-10 text-xs md:text-sm"
               style={{ backgroundImage: "var(--gradient-primary)" }}
             >
-              <ShoppingCart className="mr-2 h-4 w-4" />
+              <ShoppingCart className="mr-1.5 md:mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
               {(T.details as Record<Lang, string>)[lang]}
             </Button>
           </article>
