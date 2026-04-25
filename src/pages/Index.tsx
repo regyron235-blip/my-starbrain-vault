@@ -138,13 +138,13 @@ const Index = () => {
         </button>
 
         <a
-          href="https://t.me/sniper_TY"
+          href="https://t.me/snipern_TY"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-auto flex items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 p-3 text-sm font-semibold text-foreground hover:bg-primary/20 transition-colors"
         >
           <Send className="h-4 w-4 text-primary shrink-0" />
-          <span className="min-w-0 truncate">@sniper_TY</span>
+          <span className="min-w-0 truncate">@snipern_TY</span>
         </a>
       </aside>
 
@@ -160,13 +160,13 @@ const Index = () => {
               {t("brand")}
             </h1>
             <a
-              href="https://t.me/sniper_TY"
+              href="https://t.me/snipern_TY"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-foreground"
             >
               <Send className="h-3.5 w-3.5 text-primary" />
-              @sniper_TY
+              @snipern_TY
             </a>
           </div>
           <button
@@ -396,7 +396,7 @@ const BrainrotDialog = ({
                 className="w-full"
                 style={{ backgroundImage: "var(--gradient-primary)" }}
               >
-                <a href="https://t.me/sniper_TY" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/snipern_TY" target="_blank" rel="noopener noreferrer">
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   {(T.buy as Record<Lang, string>)[lang]}
                 </a>
@@ -545,7 +545,7 @@ const ContactSection = ({ t }: { t: (k: keyof typeof T) => string }) => (
     <p className="text-muted-foreground mb-8">{t("contactSub")}</p>
     <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
       {[
-        { label: "Telegram", value: "@sniper_TY", href: "https://t.me/sniper_TY" },
+        { label: "Telegram", value: "@snipern_TY", href: "https://t.me/snipern_TY" },
       ].map((c) => (
         <a
           key={c.label}
