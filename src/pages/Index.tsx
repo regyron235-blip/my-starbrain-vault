@@ -15,33 +15,41 @@ import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.png";
 import lasTralaleritas from "@/assets/las-tralaleritas.png";
 import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.png";
 import graipussMedussi from "@/assets/graipuss-medussi.png";
+import potHotspot from "@/assets/pot-hotspot.png";
+import tortugfinni from "@/assets/tortugfinni.png";
+import lasVaquitas from "@/assets/las-vaquitas.png";
+import chicleteria from "@/assets/chicleteria.png";
+import agarrini from "@/assets/agarrini.png";
 
-type Rarity = "secret" | "brainrot-god" | "og" | "mythic";
+type Rarity = "secret";
 
 interface Brainrot {
   name: string;
   rarity: Rarity;
   image: string;
-  income: number;
+  income: number; // dollars per second
   price: string;
 }
 
 const RARITY_HSL: Record<Rarity, string> = {
   secret: "var(--secret)",
-  "brainrot-god": "var(--brainrot-god)",
-  og: "var(--og)",
-  mythic: "var(--mythic)",
 };
 
+/** All Secret brainrots with real in-game values (source: stealthygaming.com, Sep 2025). */
 const BRAINROTS: Brainrot[] = [
-  { name: "La Grande Combinazione", rarity: "secret",       image: grandeCombinazione,    income: 100_000_000, price: "1B+" },
-  { name: "Garama and Madundung",   rarity: "secret",       image: garamaMadundung,       income: 50_000_000,  price: "500M" },
-  { name: "Los Tralaleritos",       rarity: "secret",       image: losTralaleritos,       income: 25_000_000,  price: "250M" },
-  { name: "La Vacca Saturno",       rarity: "brainrot-god", image: vaccaSaturno,          income: 5_000_000,   price: "50M" },
-  { name: "Las Tralaleritas",       rarity: "brainrot-god", image: lasTralaleritas,       income: 3_500_000,   price: "35M" },
-  { name: "Graipuss Medussi",       rarity: "brainrot-god", image: graipussMedussi,       income: 1_000_000,   price: "10M" },
-  { name: "Chimpanzini Spiderini",  rarity: "og",           image: chimpanziniSpiderini,  income: 750_000,     price: "7.5M" },
-  { name: "Nuclearo Dinossauro",    rarity: "mythic",       image: nuclearoDinossauro,    income: 500_000,     price: "5M" },
+  { name: "Garama and Madundung",      rarity: "secret", image: garamaMadundung,      income: 50_000_000, price: "10B" },
+  { name: "Nuclearo Dinossauro",       rarity: "secret", image: nuclearoDinossauro,   income: 15_000_000, price: "2.5B" },
+  { name: "La Grande Combinassion",    rarity: "secret", image: grandeCombinazione,   income: 10_000_000, price: "1B" },
+  { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  price: "750M" },
+  { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  price: "500M" },
+  { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  price: "250M" },
+  { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    price: "160M" },
+  { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    price: "150M" },
+  { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    price: "150M" },
+  { name: "Agarrini la Palini",        rarity: "secret", image: agarrini,             income: 425_000,    price: "80M" },
+  { name: "Tortugfinni Dragonfrutini", rarity: "secret", image: tortugfinni,          income: 350_000,    price: "500M" },
+  { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    price: "100M" },
+  { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    price: "50M" },
 ];
 
 type Section = "catalog" | "guide" | "faq" | "contact";
