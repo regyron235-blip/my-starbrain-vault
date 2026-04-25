@@ -47,9 +47,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        secret: "hsl(var(--secret))",
+        "brainrot-god": "hsl(var(--brainrot-god))",
+        og: "hsl(var(--og))",
+        mythic: "hsl(var(--mythic))",
         legendary: "hsl(var(--legendary))",
-        epic: "hsl(var(--epic))",
-        rare: "hsl(var(--rare))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
