@@ -242,13 +242,13 @@ const CatalogSection = ({
   onSelect: (b: Brainrot) => void;
 }) => (
   <>
-    <header className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <header className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-          <Crown className="h-8 w-8 text-brainrot-god" />
+        <h2 className="text-2xl md:text-4xl font-bold mb-2 flex items-center gap-2 md:gap-3">
+          <Crown className="h-6 w-6 md:h-8 md:w-8 text-brainrot-god" />
           {t("catalogTitle")}
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-sm md:text-base text-muted-foreground">
           {t("found")} {filtered.length} {t("pets")}
         </p>
       </div>
@@ -263,13 +263,13 @@ const CatalogSection = ({
       </div>
     </header>
 
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
       {filtered.map((b) => {
         const color = RARITY_HSL[b.rarity];
         return (
           <article
             key={b.name}
-            className="group rounded-2xl border-2 p-5 transition-all hover:-translate-y-1"
+            className="group rounded-2xl border-2 p-3 md:p-5 transition-all hover:-translate-y-1"
             style={{
               backgroundImage: "var(--gradient-card)",
               boxShadow: "var(--shadow-card)",
@@ -285,7 +285,7 @@ const CatalogSection = ({
             }}
           >
             <div
-              className="text-center mb-3 rounded-lg py-1.5 font-black text-xs tracking-widest"
+              className="text-center mb-2 md:mb-3 rounded-lg py-1 md:py-1.5 font-black text-[10px] md:text-xs tracking-widest"
               style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
             >
               {RARITY_LABEL[b.rarity]}
@@ -294,7 +294,7 @@ const CatalogSection = ({
             <button
               type="button"
               onClick={() => onSelect(b)}
-              className="flex items-center justify-center h-40 mb-4 w-full"
+              className="flex items-center justify-center h-24 md:h-40 mb-3 md:mb-4 w-full"
               aria-label={b.name}
             >
               <img
@@ -307,23 +307,23 @@ const CatalogSection = ({
               />
             </button>
 
-            <h3 className="text-center font-bold text-lg mb-3 leading-tight">{b.name}</h3>
+            <h3 className="text-center font-bold text-sm md:text-lg mb-2 md:mb-3 leading-tight line-clamp-2 min-h-[2.5em]">{b.name}</h3>
 
-            <div className="flex items-center justify-between text-sm mb-4 px-1">
-              <span className="flex items-center gap-1 font-semibold" style={{ color: `hsl(${color})` }}>
-                <Zap className="h-3.5 w-3.5" />
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-xs md:text-sm mb-3 md:mb-4 px-1">
+              <span className="flex items-center gap-1 font-semibold truncate" style={{ color: `hsl(${color})` }}>
+                <Zap className="h-3 w-3 md:h-3.5 md:w-3.5 shrink-0" />
                 {formatIncome(b.income, t("perSec"))}
               </span>
-              <span className="font-semibold text-foreground">{priceFor(b)}</span>
+              <span className="font-semibold text-foreground truncate">{priceFor(b)}</span>
             </div>
 
             <Button
               type="button"
               onClick={() => onSelect(b)}
-              className="w-full"
+              className="w-full h-9 md:h-10 text-xs md:text-sm"
               style={{ backgroundImage: "var(--gradient-primary)" }}
             >
-              <ShoppingCart className="mr-2 h-4 w-4" />
+              <ShoppingCart className="mr-1.5 md:mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
               {(T.details as Record<Lang, string>)[lang]}
             </Button>
           </article>
