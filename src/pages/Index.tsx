@@ -1,25 +1,28 @@
 import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
-  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe,
+  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 import { T, LANGS, RARITY_LABEL, type Lang } from "@/lib/i18n";
 
-import grandeCombinazione from "@/assets/grande-combinazione.png";
-import vaccaSaturno from "@/assets/vacca-saturno.png";
-import losTralaleritos from "@/assets/los-tralaleritos.png";
-import garamaMadundung from "@/assets/garama-madundung.png";
-import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.png";
-import lasTralaleritas from "@/assets/las-tralaleritas.png";
-import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.png";
-import graipussMedussi from "@/assets/graipuss-medussi.png";
-import potHotspot from "@/assets/pot-hotspot.png";
-import tortugfinni from "@/assets/tortugfinni.png";
-import lasVaquitas from "@/assets/las-vaquitas.png";
-import chicleteria from "@/assets/chicleteria.png";
-import agarrini from "@/assets/agarrini.png";
+import grandeCombinazione from "@/assets/grande-combinazione.webp";
+import vaccaSaturno from "@/assets/vacca-saturno.webp";
+import losTralaleritos from "@/assets/los-tralaleritos.webp";
+import garamaMadundung from "@/assets/garama-madundung.webp";
+import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.webp";
+import lasTralaleritas from "@/assets/las-tralaleritas.webp";
+import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.webp";
+import graipussMedussi from "@/assets/graipuss-medussi.webp";
+import potHotspot from "@/assets/pot-hotspot.webp";
+import tortugfinni from "@/assets/tortugfinni.webp";
+import lasVaquitas from "@/assets/las-vaquitas.webp";
+import chicleteria from "@/assets/chicleteria.webp";
+import agarrini from "@/assets/agarrini.webp";
 
 type Rarity = "secret";
 
