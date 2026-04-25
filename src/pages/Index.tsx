@@ -373,7 +373,7 @@ const BrainrotDialog = ({
                 className="w-full"
                 style={{ backgroundImage: "var(--gradient-primary)" }}
               >
-                <a href="https://t.me/brainrot_ua" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/sniper_TY" target="_blank" rel="noopener noreferrer">
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   {(T.buy as Record<Lang, string>)[lang]}
                 </a>
@@ -522,8 +522,7 @@ const ContactSection = ({ t }: { t: (k: keyof typeof T) => string }) => (
     <p className="text-muted-foreground mb-8">{t("contactSub")}</p>
     <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
       {[
-        { label: "Telegram", value: "@brainrot_ua", href: "https://t.me/brainrot_ua" },
-        { label: "Discord",  value: "brainrot.ua",   href: "#" },
+        { label: "Telegram", value: "@sniper_TY", href: "https://t.me/sniper_TY" },
       ].map((c) => (
         <a
           key={c.label}
