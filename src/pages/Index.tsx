@@ -1,14 +1,17 @@
 import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
-  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe,
+  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
-import { T, LANGS, RARITY_LABEL, type Lang } from "@/lib/i18n";
+import {
+  T, LANGS, RARITY_LABEL, GUIDE, FAQ, REAL_PRICE_USD, formatPrice,
+  type Lang,
+} from "@/lib/i18n";
 
 import grandeCombinazione from "@/assets/grande-combinazione.webp";
 import vaccaSaturno from "@/assets/vacca-saturno.webp";
@@ -30,29 +33,28 @@ interface Brainrot {
   name: string;
   rarity: Rarity;
   image: string;
-  income: number; // dollars per second
-  price: string;
+  income: number; // dollars per second (in-game)
+  priceTag: string; // in-game price tag, key into REAL_PRICE_USD
 }
 
 const RARITY_HSL: Record<Rarity, string> = {
   secret: "var(--secret)",
 };
 
-/** All Secret brainrots with real in-game values (source: stealthygaming.com, Sep 2025). */
 const BRAINROTS: Brainrot[] = [
-  { name: "Garama and Madundung",      rarity: "secret", image: garamaMadundung,      income: 50_000_000, price: "10B" },
-  { name: "Nuclearo Dinossauro",       rarity: "secret", image: nuclearoDinossauro,   income: 15_000_000, price: "2.5B" },
-  { name: "La Grande Combinassion",    rarity: "secret", image: grandeCombinazione,   income: 10_000_000, price: "1B" },
-  { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  price: "750M" },
-  { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  price: "500M" },
-  { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  price: "250M" },
-  { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    price: "160M" },
-  { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    price: "150M" },
-  { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    price: "150M" },
-  { name: "Agarrini la Palini",        rarity: "secret", image: agarrini,             income: 425_000,    price: "80M" },
-  { name: "Tortugfinni Dragonfrutini", rarity: "secret", image: tortugfinni,          income: 350_000,    price: "500M" },
-  { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    price: "100M" },
-  { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    price: "50M" },
+  { name: "Garama and Madundung",      rarity: "secret", image: garamaMadundung,      income: 50_000_000, priceTag: "10B" },
+  { name: "Nuclearo Dinossauro",       rarity: "secret", image: nuclearoDinossauro,   income: 15_000_000, priceTag: "2.5B" },
+  { name: "La Grande Combinassion",    rarity: "secret", image: grandeCombinazione,   income: 10_000_000, priceTag: "1B" },
+  { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  priceTag: "750M" },
+  { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  priceTag: "500M" },
+  { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  priceTag: "250M" },
+  { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    priceTag: "160M" },
+  { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    priceTag: "150M" },
+  { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    priceTag: "150M" },
+  { name: "Agarrini la Palini",        rarity: "secret", image: agarrini,             income: 425_000,    priceTag: "80M" },
+  { name: "Tortugfinni Dragonfrutini", rarity: "secret", image: tortugfinni,          income: 350_000,    priceTag: "500M" },
+  { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    priceTag: "100M" },
+  { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
 type Section = "catalog" | "guide" | "faq" | "contact";
@@ -67,6 +69,7 @@ const Index = () => {
   const [query, setQuery] = useState("");
   const [lang, setLang] = useState<Lang>("ua");
   const [selected, setSelected] = useState<Brainrot | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
   const filtered = useMemo(
@@ -74,12 +77,17 @@ const Index = () => {
     [query],
   );
 
+  const currentLang = LANGS.find((l) => l.code === lang)!;
+
   const NAV: { id: Section; icon: typeof PawPrint; label: string }[] = [
     { id: "catalog", icon: PawPrint,      label: t("navCatalog") },
     { id: "guide",   icon: BookOpen,      label: t("navGuide") },
     { id: "faq",     icon: HelpCircle,    label: t("navFaq") },
     { id: "contact", icon: MessageCircle, label: t("navContact") },
   ];
+
+  const priceFor = (b: Brainrot) =>
+    formatPrice(REAL_PRICE_USD[b.priceTag] ?? 0, currentLang.currency);
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
@@ -112,27 +120,22 @@ const Index = () => {
           ))}
         </nav>
 
-        {/* Language switcher */}
-        <div className="rounded-xl border border-border bg-secondary/40 p-3">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-            <Globe className="h-3.5 w-3.5" /> Language
-          </div>
-          <div className="flex gap-1">
-            {LANGS.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLang(l.code)}
-                className={`flex-1 rounded-lg px-2 py-1.5 text-xs font-bold transition-colors ${
-                  lang === l.code
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background/40 text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {l.flag} {l.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* Language button → opens modal */}
+        <button
+          onClick={() => setLangOpen(true)}
+          className="flex items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2.5 text-sm font-medium hover:bg-secondary transition-colors"
+        >
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/20 text-[10px] font-bold text-primary">
+            {currentLang.cc}
+          </span>
+          <span className="flex-1 text-left">
+            <span className="block leading-tight">{currentLang.name}</span>
+            <span className="block text-[10px] text-muted-foreground leading-tight">
+              {currentLang.native} · {currentLang.currency}
+            </span>
+          </span>
+          <Globe className="h-4 w-4 text-muted-foreground" />
+        </button>
 
         <div className="mt-auto rounded-xl border border-border bg-secondary/50 p-4 text-xs text-muted-foreground">
           {t("topNote")}
@@ -143,19 +146,17 @@ const Index = () => {
       <main className="flex-1 p-6 md:p-10">
         {/* Mobile top bar */}
         <div className="md:hidden mb-6 space-y-3">
-          <div className="flex gap-1 rounded-xl bg-secondary/40 p-1">
-            {LANGS.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => setLang(l.code)}
-                className={`flex-1 rounded-lg px-2 py-1.5 text-xs font-bold ${
-                  lang === l.code ? "bg-primary text-primary-foreground" : "text-muted-foreground"
-                }`}
-              >
-                {l.flag} {l.label}
-              </button>
-            ))}
-          </div>
+          <button
+            onClick={() => setLangOpen(true)}
+            className="flex w-full items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm"
+          >
+            <span className="flex h-6 w-6 items-center justify-center rounded bg-primary/20 text-[10px] font-bold text-primary">
+              {currentLang.cc}
+            </span>
+            <span className="flex-1 text-left font-medium">{currentLang.name}</span>
+            <span className="text-xs text-muted-foreground">{currentLang.currency}</span>
+            <Globe className="h-4 w-4 text-muted-foreground" />
+          </button>
           <div className="flex gap-2 overflow-x-auto pb-1">
             {NAV.map(({ id, icon: Icon, label }) => (
               <button
@@ -179,6 +180,7 @@ const Index = () => {
             setQuery={setQuery}
             t={t}
             lang={lang}
+            priceFor={priceFor}
             onSelect={setSelected}
           />
         )}
@@ -192,6 +194,15 @@ const Index = () => {
         onClose={() => setSelected(null)}
         t={t}
         lang={lang}
+        priceFor={priceFor}
+      />
+
+      <LangDialog
+        open={langOpen}
+        onClose={() => setLangOpen(false)}
+        current={lang}
+        onPick={(l) => { setLang(l); setLangOpen(false); }}
+        t={t}
       />
     </div>
   );
@@ -200,10 +211,11 @@ const Index = () => {
 /* ---------- Sections ---------- */
 
 const CatalogSection = ({
-  filtered, query, setQuery, t, lang, onSelect,
+  filtered, query, setQuery, t, lang, priceFor, onSelect,
 }: {
   filtered: Brainrot[]; query: string; setQuery: (v: string) => void;
   t: (k: keyof typeof T) => string; lang: Lang;
+  priceFor: (b: Brainrot) => string;
   onSelect: (b: Brainrot) => void;
 }) => (
   <>
@@ -279,7 +291,7 @@ const CatalogSection = ({
                 <Zap className="h-3.5 w-3.5" />
                 {formatIncome(b.income, t("perSec"))}
               </span>
-              <span className="text-muted-foreground">~{b.price}</span>
+              <span className="font-semibold text-foreground">{priceFor(b)}</span>
             </div>
 
             <Button
@@ -299,12 +311,13 @@ const CatalogSection = ({
 );
 
 const BrainrotDialog = ({
-  brainrot, onClose, t, lang,
+  brainrot, onClose, t, lang, priceFor,
 }: {
   brainrot: Brainrot | null;
   onClose: () => void;
   t: (k: keyof typeof T) => string;
   lang: Lang;
+  priceFor: (b: Brainrot) => string;
 }) => {
   const open = brainrot !== null;
   const color = brainrot ? RARITY_HSL[brainrot.rarity] : "var(--secret)";
@@ -351,7 +364,7 @@ const BrainrotDialog = ({
                 </div>
                 <div className="rounded-lg bg-secondary/50 p-3">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("price")}</p>
-                  <p className="font-bold">~${brainrot.price}</p>
+                  <p className="font-bold">{priceFor(brainrot)}</p>
                 </div>
               </div>
 
@@ -373,8 +386,83 @@ const BrainrotDialog = ({
   );
 };
 
+const LangDialog = ({
+  open, onClose, current, onPick, t,
+}: {
+  open: boolean;
+  onClose: () => void;
+  current: Lang;
+  onPick: (l: Lang) => void;
+  t: (k: keyof typeof T) => string;
+}) => {
+  const [q, setQ] = useState("");
+  const list = LANGS.filter(
+    (l) =>
+      l.name.toLowerCase().includes(q.toLowerCase()) ||
+      l.native.toLowerCase().includes(q.toLowerCase()),
+  );
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent className="max-w-3xl border-border p-0 overflow-hidden">
+        <div className="flex items-center gap-4 p-6 pb-4">
+          <DialogTitle
+            className="flex-1 text-3xl font-black bg-clip-text text-transparent"
+            style={{ backgroundImage: "var(--gradient-primary)" }}
+          >
+            {t("selectLang")}
+          </DialogTitle>
+          <div className="relative w-full max-w-xs">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={t("searchPh")}
+              className="pl-9 bg-secondary border-border rounded-full"
+            />
+          </div>
+          <button
+            onClick={onClose}
+            className="text-muted-foreground hover:text-foreground"
+            aria-label={t("close")}
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+        <DialogDescription className="sr-only">{t("selectLang")}</DialogDescription>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 p-6 pt-2 max-h-[60vh] overflow-y-auto">
+          {list.map((l) => {
+            const active = l.code === current;
+            return (
+              <button
+                key={l.code}
+                onClick={() => onPick(l.code)}
+                className={`flex items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
+                  active
+                    ? "border-primary bg-primary/10"
+                    : "border-border bg-secondary/40 hover:bg-secondary"
+                }`}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-background/60 text-xs font-bold text-muted-foreground">
+                  {l.cc}
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold truncate">{l.name}</span>
+                  <span className="block text-xs text-muted-foreground truncate">
+                    {l.native} · {l.currency}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 const GuideSection = ({ lang, t }: { lang: Lang; t: (k: keyof typeof T) => string }) => {
-  const steps = T.guide[lang];
+  const steps = GUIDE[lang];
   const icons = [Sparkles, TrendingUp, Zap, Crown];
   return (
     <>
@@ -409,7 +497,7 @@ const FaqSection = ({ lang, t }: { lang: Lang; t: (k: keyof typeof T) => string 
     </h2>
     <p className="text-muted-foreground mb-8">{t("faqSub")}</p>
     <div className="space-y-3">
-      {T.faq[lang].map(({ q, a }) => (
+      {FAQ[lang].map(({ q, a }) => (
         <details
           key={q}
           className="group rounded-2xl border border-border p-5 cursor-pointer"
@@ -445,7 +533,7 @@ const ContactSection = ({ t }: { t: (k: keyof typeof T) => string }) => (
           className="rounded-2xl border border-border p-6 hover:border-primary/60 transition-colors"
           style={{ backgroundImage: "var(--gradient-card)" }}
         >
-          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">{c.label}</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{c.label}</p>
           <p className="font-bold text-lg">{c.value}</p>
         </a>
       ))}
