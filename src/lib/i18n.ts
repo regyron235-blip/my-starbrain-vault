@@ -25,7 +25,7 @@ export const T = {
   faqSub:       { ua: "Відповіді на популярні запитання", en: "Answers to popular questions", ru: "Ответы на популярные вопросы" },
   contactTitle: { ua: "Контакти",      en: "Contacts",    ru: "Контакты" },
   contactSub:   { ua: "Зв'яжись зі мною в зручному месенджері", en: "Reach me in your preferred messenger", ru: "Свяжись со мной в удобном мессенджере" },
-  topNote:      { ua: "Тільки топ-тір: Secret · Brainrot God · OG", en: "Top-tier only: Secret · Brainrot God · OG", ru: "Только топ-тир: Secret · Brainrot God · OG" },
+  topNote:      { ua: "Тільки SECRET брейнроти", en: "SECRET brainrots only", ru: "Только SECRET брейнроты" },
   guide: {
     ua: [
       { t: "1. Купуй брейнротів", d: "На конвеєрі з'являються пети — купуй найкращих за свій бюджет." },
@@ -48,29 +48,26 @@ export const T = {
   },
   faq: {
     ua: [
-      { q: "Це реальні брейнроти з гри?",   a: "Так, усі пети з каталогу — топові з Steal a Brainrot (Roblox)." },
+      { q: "Це реальні брейнроти з гри?",   a: "Так, усі пети — Secret з Steal a Brainrot (Roblox)." },
       { q: "Як купити?",                     a: "Натисни «Купити / Обмін» — відкриється Telegram, домовляйся напряму." },
       { q: "Чи можна обмін на Robux?",       a: "Так, обмін через ігровий Trade. Деталі узгоджуй у чаті." },
-      { q: "Які брейнроти найдорожчі?",      a: "Secret-тір: La Grande Combinazione, Garama and Madundung, Los Tralaleritos." },
+      { q: "Які брейнроти найдорожчі?",      a: "Garama and Madundung (10B), Nuclearo Dinossauro (2.5B), La Grande Combinassion (1B)." },
     ],
     en: [
-      { q: "Are these real brainrots from the game?", a: "Yes, all pets are top-tier from Steal a Brainrot (Roblox)." },
+      { q: "Are these real brainrots from the game?", a: "Yes, all pets are Secret tier from Steal a Brainrot (Roblox)." },
       { q: "How do I buy?",                            a: "Click \"Buy / Trade\" — Telegram will open, negotiate directly." },
       { q: "Can I trade for Robux?",                   a: "Yes, trade in-game. Discuss details in chat." },
-      { q: "Which brainrots are most expensive?",      a: "Secret tier: La Grande Combinazione, Garama and Madundung, Los Tralaleritos." },
+      { q: "Which brainrots are most expensive?",      a: "Garama and Madundung (10B), Nuclearo Dinossauro (2.5B), La Grande Combinassion (1B)." },
     ],
     ru: [
-      { q: "Это реальные брейнроты из игры?", a: "Да, все петы из каталога — топовые из Steal a Brainrot (Roblox)." },
+      { q: "Это реальные брейнроты из игры?", a: "Да, все петы — Secret из Steal a Brainrot (Roblox)." },
       { q: "Как купить?",                      a: "Нажми «Купить / Обмен» — откроется Telegram, договаривайся напрямую." },
       { q: "Можно обмен на Robux?",            a: "Да, обмен через игровой Trade. Детали в чате." },
-      { q: "Какие брейнроты самые дорогие?",   a: "Secret-тир: La Grande Combinazione, Garama and Madundung, Los Tralaleritos." },
+      { q: "Какие брейнроты самые дорогие?",   a: "Garama and Madundung (10B), Nuclearo Dinossauro (2.5B), La Grande Combinassion (1B)." },
     ],
   },
 } as const;
 
 export const RARITY_LABEL = {
   secret: "SECRET",
-  "brainrot-god": "BRAINROT GOD",
-  og: "OG",
-  mythic: "MYTHIC",
 } as const;
