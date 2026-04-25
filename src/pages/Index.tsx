@@ -5,21 +5,24 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 import { T, LANGS, RARITY_LABEL, type Lang } from "@/lib/i18n";
 
-import grandeCombinazione from "@/assets/grande-combinazione.png";
-import vaccaSaturno from "@/assets/vacca-saturno.png";
-import losTralaleritos from "@/assets/los-tralaleritos.png";
-import garamaMadundung from "@/assets/garama-madundung.png";
-import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.png";
-import lasTralaleritas from "@/assets/las-tralaleritas.png";
-import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.png";
-import graipussMedussi from "@/assets/graipuss-medussi.png";
-import potHotspot from "@/assets/pot-hotspot.png";
-import tortugfinni from "@/assets/tortugfinni.png";
-import lasVaquitas from "@/assets/las-vaquitas.png";
-import chicleteria from "@/assets/chicleteria.png";
-import agarrini from "@/assets/agarrini.png";
+import grandeCombinazione from "@/assets/grande-combinazione.webp";
+import vaccaSaturno from "@/assets/vacca-saturno.webp";
+import losTralaleritos from "@/assets/los-tralaleritos.webp";
+import garamaMadundung from "@/assets/garama-madundung.webp";
+import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.webp";
+import lasTralaleritas from "@/assets/las-tralaleritas.webp";
+import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.webp";
+import graipussMedussi from "@/assets/graipuss-medussi.webp";
+import potHotspot from "@/assets/pot-hotspot.webp";
+import tortugfinni from "@/assets/tortugfinni.webp";
+import lasVaquitas from "@/assets/las-vaquitas.webp";
+import chicleteria from "@/assets/chicleteria.webp";
+import agarrini from "@/assets/agarrini.webp";
 
 type Rarity = "secret";
 
@@ -63,6 +66,7 @@ const Index = () => {
   const [section, setSection] = useState<Section>("catalog");
   const [query, setQuery] = useState("");
   const [lang, setLang] = useState<Lang>("ua");
+  const [selected, setSelected] = useState<Brainrot | null>(null);
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
   const filtered = useMemo(
@@ -175,12 +179,20 @@ const Index = () => {
             setQuery={setQuery}
             t={t}
             lang={lang}
+            onSelect={setSelected}
           />
         )}
         {section === "guide" && <GuideSection lang={lang} t={t} />}
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
       </main>
+
+      <BrainrotDialog
+        brainrot={selected}
+        onClose={() => setSelected(null)}
+        t={t}
+        lang={lang}
+      />
     </div>
   );
 };
@@ -188,10 +200,11 @@ const Index = () => {
 /* ---------- Sections ---------- */
 
 const CatalogSection = ({
-  filtered, query, setQuery, t, lang,
+  filtered, query, setQuery, t, lang, onSelect,
 }: {
   filtered: Brainrot[]; query: string; setQuery: (v: string) => void;
   t: (k: keyof typeof T) => string; lang: Lang;
+  onSelect: (b: Brainrot) => void;
 }) => (
   <>
     <header className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -243,7 +256,12 @@ const CatalogSection = ({
               {RARITY_LABEL[b.rarity]}
             </div>
 
-            <div className="flex items-center justify-center h-40 mb-4">
+            <button
+              type="button"
+              onClick={() => onSelect(b)}
+              className="flex items-center justify-center h-40 mb-4 w-full"
+              aria-label={b.name}
+            >
               <img
                 src={b.image}
                 alt={b.name}
@@ -252,7 +270,7 @@ const CatalogSection = ({
                 height={512}
                 className="max-h-full w-auto object-contain transition-transform group-hover:scale-110 drop-shadow-2xl"
               />
-            </div>
+            </button>
 
             <h3 className="text-center font-bold text-lg mb-3 leading-tight">{b.name}</h3>
 
@@ -264,11 +282,14 @@ const CatalogSection = ({
               <span className="text-muted-foreground">~{b.price}</span>
             </div>
 
-            <Button asChild className="w-full" style={{ backgroundImage: "var(--gradient-primary)" }}>
-              <a href="https://t.me/brainrot_ua" target="_blank" rel="noopener noreferrer">
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                {(T.buy as Record<Lang, string>)[lang]}
-              </a>
+            <Button
+              type="button"
+              onClick={() => onSelect(b)}
+              className="w-full"
+              style={{ backgroundImage: "var(--gradient-primary)" }}
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              {(T.details as Record<Lang, string>)[lang]}
             </Button>
           </article>
         );
@@ -276,6 +297,81 @@ const CatalogSection = ({
     </section>
   </>
 );
+
+const BrainrotDialog = ({
+  brainrot, onClose, t, lang,
+}: {
+  brainrot: Brainrot | null;
+  onClose: () => void;
+  t: (k: keyof typeof T) => string;
+  lang: Lang;
+}) => {
+  const open = brainrot !== null;
+  const color = brainrot ? RARITY_HSL[brainrot.rarity] : "var(--secret)";
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent
+        className="max-w-md border-2 p-0 overflow-hidden"
+        style={{
+          borderColor: `hsl(${color} / 0.6)`,
+          backgroundImage: "var(--gradient-card)",
+          boxShadow: `0 0 60px -10px hsl(${color} / 0.6)`,
+        }}
+      >
+        {brainrot && (
+          <>
+            <DialogHeader className="px-6 pt-6 pb-2">
+              <div
+                className="text-center mb-4 rounded-lg py-1.5 font-black text-xs tracking-widest"
+                style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
+              >
+                {RARITY_LABEL[brainrot.rarity]}
+              </div>
+              <div className="flex items-center justify-center h-56">
+                <img
+                  src={brainrot.image}
+                  alt={brainrot.name}
+                  className="max-h-full w-auto object-contain drop-shadow-2xl"
+                />
+              </div>
+              <DialogTitle className="text-center text-2xl font-black mt-2">
+                {brainrot.name}
+              </DialogTitle>
+              <DialogDescription className="sr-only">{brainrot.name}</DialogDescription>
+            </DialogHeader>
+
+            <div className="px-6 pb-6 space-y-4">
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="rounded-lg bg-secondary/50 p-3">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("income")}</p>
+                  <p className="font-bold flex items-center gap-1" style={{ color: `hsl(${color})` }}>
+                    <Zap className="h-3.5 w-3.5" />
+                    {formatIncome(brainrot.income, t("perSec"))}
+                  </p>
+                </div>
+                <div className="rounded-lg bg-secondary/50 p-3">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("price")}</p>
+                  <p className="font-bold">~${brainrot.price}</p>
+                </div>
+              </div>
+
+              <Button
+                asChild
+                className="w-full"
+                style={{ backgroundImage: "var(--gradient-primary)" }}
+              >
+                <a href="https://t.me/brainrot_ua" target="_blank" rel="noopener noreferrer">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  {(T.buy as Record<Lang, string>)[lang]}
+                </a>
+              </Button>
+            </div>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const GuideSection = ({ lang, t }: { lang: Lang; t: (k: keyof typeof T) => string }) => {
   const steps = T.guide[lang];
