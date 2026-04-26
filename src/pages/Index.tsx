@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import BrainrotPlayer from "@/components/BrainrotPlayer";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -260,15 +261,9 @@ const CatalogSection = ({
           <div className="text-xs md:text-sm text-white/90 font-semibold">
             Tralalero Tralala · Bombardiro Crocodilo · Lirili Larila 🐊✨
           </div>
-          <audio
-            controls
-            loop
-            preload="none"
-            src={`${import.meta.env.BASE_URL}audio/tung-tung-sahur.mp3`}
-            className="mt-3 w-full max-w-xs h-9 rounded-full bg-white/90"
-          >
-            🎵 Tung Tung Sahur
-          </audio>
+          <div className="flex justify-center md:justify-start">
+            <BrainrotPlayer />
+          </div>
         </div>
         <div className="text-4xl md:text-6xl animate-spin" style={{ animationDuration: "3s" }}>💀</div>
       </div>
