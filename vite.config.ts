@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  ase: '/my-starbrain-vault/',
+  base: '/my-starbrain-vault/',
   server: {
     host: "::",
     port: 8080,
