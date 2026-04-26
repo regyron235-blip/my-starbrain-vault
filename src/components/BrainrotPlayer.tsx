@@ -62,7 +62,7 @@ const BrainrotPlayer = () => {
   const progress = dur ? (cur / dur) * 100 : 0;
 
   return (
-    <div className="mt-3 w-full max-w-md rounded-2xl bg-black/30 backdrop-blur-md border border-white/20 p-2.5 shadow-2xl">
+    <div className="mt-3 w-full max-w-md rounded-2xl bg-black/30 md:backdrop-blur-md border border-white/20 p-2.5 shadow-2xl">
       <audio ref={audioRef} src={SRC} loop preload="metadata" />
       <div className="flex items-center gap-3">
         <button
@@ -71,7 +71,7 @@ const BrainrotPlayer = () => {
           className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-primary shadow-lg transition-transform hover:scale-110 active:scale-95"
         >
           {playing && (
-            <span className="absolute inset-0 rounded-full bg-white/40 animate-ping" />
+            <span className="absolute inset-0 rounded-full bg-white/40 md:animate-ping" />
           )}
           {playing ? <Pause className="h-5 w-5 fill-current" /> : <Play className="h-5 w-5 fill-current ml-0.5" />}
         </button>
@@ -84,7 +84,7 @@ const BrainrotPlayer = () => {
                 {[0, 1, 2, 3].map((i) => (
                   <span
                     key={i}
-                    className={`w-0.5 bg-white rounded-full ${playing ? "animate-pulse" : ""}`}
+                    className={`w-0.5 bg-white rounded-full ${playing ? "md:animate-pulse" : ""}`}
                     style={{
                       height: playing ? `${30 + ((i * 23) % 70)}%` : "30%",
                       animationDelay: `${i * 0.15}s`,
@@ -105,7 +105,7 @@ const BrainrotPlayer = () => {
           <div className="relative h-1.5 group">
             <div className="absolute inset-0 rounded-full bg-white/20" />
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-white to-white/80 shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-white to-white/80 md:shadow-[0_0_8px_rgba(255,255,255,0.6)]"
               style={{ width: `${progress}%` }}
             />
             <input
