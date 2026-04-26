@@ -4,7 +4,23 @@
       <stop offset="0%" style="stop-color:#ffa751;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#ffe259;stop-opacity:1" />
     </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+    </filter>
   </defs>
-  <rect width="200" height="200" fill="url(#grad)" rx="10"/>
-  <text x="100" y="100" font-size="18" font-weight="bold" fill="white" text-anchor="middle">Los Spaghettis</text>
+  <rect width="200" height="200" fill="url(#grad)" rx="15"/>
+  <!-- Multiple strands of spaghetti -->
+  <path d="M 60 80 Q 70 60 80 80" stroke="#c7a86d" stroke-width="4" fill="none" filter="url(#shadow)"/>
+  <path d="M 80 75 Q 90 55 100 75" stroke="#c7a86d" stroke-width="4" fill="none" filter="url(#shadow)"/>
+  <path d="M 100 80 Q 110 60 120 80" stroke="#c7a86d" stroke-width="4" fill="none" filter="url(#shadow)"/>
+  <path d="M 120 75 Q 130 55 140 75" stroke="#c7a86d" stroke-width="4" fill="none" filter="url(#shadow)"/>
+  <!-- Meatballs -->
+  <circle cx="70" cy="90" r="6" fill="#d2691e" filter="url(#shadow)"/>
+  <circle cx="100" cy="95" r="6" fill="#d2691e" filter="url(#shadow)"/>
+  <circle cx="130" cy="90" r="6" fill="#d2691e" filter="url(#shadow)"/>
+  <!-- Sauce splatter -->
+  <circle cx="85" cy="115" r="4" fill="#c1440e" opacity="0.8"/>
+  <circle cx="115" cy="120" r="3" fill="#c1440e" opacity="0.8"/>
+  <!-- Text -->
+  <text x="100" y="165" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Los Spaghettis</text>
 </svg>

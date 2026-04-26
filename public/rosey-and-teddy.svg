@@ -1,10 +1,22 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
     </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+    </filter>
   </defs>
-  <rect width="200" height="200" fill="url(#grad)" rx="10"/>
-  <text x="100" y="100" font-size="18" font-weight="bold" fill="white" text-anchor="middle">Rosey & Teddy</text>
+  <rect width="200" height="200" fill="url(#grad)" rx="15"/>
+  <!-- Rosey -->
+  <circle cx="70" cy="80" r="25" fill="#ff69b4" filter="url(#shadow)"/>
+  <circle cx="70" cy="70" r="8" fill="#ffb6c1"/>
+  <!-- Teddy -->
+  <circle cx="130" cy="80" r="25" fill="#d2691e" filter="url(#shadow)"/>
+  <circle cx="130" cy="70" r="8" fill="#daa520"/>
+  <!-- Hearts -->
+  <path d="M 100 100 L 95 110 L 100 115 L 105 110 Z" fill="#ff1493"/>
+  <!-- Text -->
+  <text x="100" y="165" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Rosey & Teddy</text>
 </svg>

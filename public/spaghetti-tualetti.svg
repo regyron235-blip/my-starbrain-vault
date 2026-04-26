@@ -4,7 +4,21 @@
       <stop offset="0%" style="stop-color:#ff9a56;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
     </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+    </filter>
   </defs>
-  <rect width="200" height="200" fill="url(#grad)" rx="10"/>
-  <text x="100" y="100" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Spaghetti Tualetti</text>
+  <rect width="200" height="200" fill="url(#grad)" rx="15"/>
+  <!-- Toilet bowl -->
+  <ellipse cx="100" cy="85" rx="30" ry="35" fill="#f0f0f0" filter="url(#shadow)"/>
+  <ellipse cx="100" cy="85" rx="28" ry="33" fill="#fff" opacity="0.7"/>
+  <!-- Water inside -->
+  <ellipse cx="100" cy="90" rx="20" ry="15" fill="#b3e5fc" opacity="0.8"/>
+  <!-- Spaghetti in toilet -->
+  <path d="M 80 75 Q 90 65 100 75" stroke="#c7a86d" stroke-width="3" fill="none"/>
+  <path d="M 100 70 Q 110 60 120 75" stroke="#c7a86d" stroke-width="3" fill="none"/>
+  <!-- Toilet paper roll on top -->
+  <rect x="110" y="50" width="15" height="20" fill="#fafafa" filter="url(#shadow)" rx="2"/>
+  <!-- Text -->
+  <text x="100" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Spaghetti Tualetti</text>
 </svg>
