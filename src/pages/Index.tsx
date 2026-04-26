@@ -243,10 +243,10 @@ const CatalogSection = ({
   onSelect: (b: Brainrot) => void;
 }) => (
   <>
-    <div className="mb-6 md:mb-8 relative overflow-hidden rounded-2xl border-2 border-primary/40 p-4 md:p-6"
+    <div className="mb-6 md:mb-8 relative overflow-hidden rounded-2xl border-2 border-primary/40 p-4 md:p-6 [transform:translateZ(0)] [backface-visibility:hidden]"
       style={{ backgroundImage: "var(--gradient-primary)" }}
     >
-      <div className="absolute inset-0 opacity-20 pointer-events-none"
+      <div className="absolute inset-0 opacity-20 pointer-events-none [transform:translateZ(0)]"
         style={{ backgroundImage: "radial-gradient(circle at 20% 20%, #fff 1px, transparent 1px), radial-gradient(circle at 80% 60%, #fff 1px, transparent 1px)", backgroundSize: "24px 24px, 32px 32px" }}
       />
       <div className="relative flex flex-col md:flex-row items-center gap-3 md:gap-5">
@@ -255,7 +255,7 @@ const CatalogSection = ({
           <div className="text-[10px] md:text-xs font-black tracking-[0.3em] text-white/80 uppercase">
             ⚡ BRAINROT MODE ⚡
           </div>
-          <div className="text-xl md:text-3xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] animate-pulse">
+          <div className="text-xl md:text-3xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
             TUNG TUNG TUNG SAHUR 🥁
           </div>
           <div className="text-xs md:text-sm text-white/90 font-semibold">
