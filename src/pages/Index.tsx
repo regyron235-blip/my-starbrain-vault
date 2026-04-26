@@ -250,12 +250,12 @@ const CatalogSection = ({
         style={{ backgroundImage: "radial-gradient(circle at 20% 20%, #fff 1px, transparent 1px), radial-gradient(circle at 80% 60%, #fff 1px, transparent 1px)", backgroundSize: "24px 24px, 32px 32px" }}
       />
       <div className="relative flex flex-col md:flex-row items-center gap-3 md:gap-5">
-        <div className="text-4xl md:text-6xl animate-bounce">🧠</div>
+        <div className="text-4xl md:text-6xl md:animate-bounce">🧠</div>
         <div className="flex-1 text-center md:text-left">
           <div className="text-[10px] md:text-xs font-black tracking-[0.3em] text-white/80 uppercase">
             ⚡ BRAINROT MODE ⚡
           </div>
-          <div className="text-xl md:text-3xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+          <div className="text-xl md:text-3xl font-black text-white md:drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
             TUNG TUNG TUNG SAHUR 🥁
           </div>
           <div className="text-xs md:text-sm text-white/90 font-semibold">
@@ -265,7 +265,7 @@ const CatalogSection = ({
             <BrainrotPlayer />
           </div>
         </div>
-        <div className="text-4xl md:text-6xl animate-spin" style={{ animationDuration: "3s" }}>💀</div>
+        <div className="text-4xl md:text-6xl md:animate-spin" style={{ animationDuration: "3s" }}>💀</div>
       </div>
     </div>
 
@@ -330,7 +330,7 @@ const CatalogSection = ({
                 loading="lazy"
                 width={512}
                 height={512}
-                className="max-h-full w-auto object-contain transition-transform group-hover:scale-110 drop-shadow-2xl"
+                className="max-h-full w-auto object-contain transition-transform group-hover:scale-110 md:drop-shadow-2xl"
               />
             </button>
 
@@ -394,7 +394,7 @@ const BrainrotDialog = ({
                 <img
                   src={brainrot.image}
                   alt={brainrot.name}
-                  className="max-h-full w-auto object-contain drop-shadow-2xl"
+                  className="max-h-full w-auto object-contain md:drop-shadow-2xl"
                 />
               </div>
               <DialogTitle className="text-center text-2xl font-black mt-2">
