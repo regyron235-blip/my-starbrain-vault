@@ -58,8 +58,8 @@ const BRAINROTS: Brainrot[] = [
   { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    priceTag: "100M" },
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
- | "currency"
-type Section = "catalog" | "guide" | "faq" | "contact";
+
+type Section = "catalog" | "guide" | "faq" | "contact" | "currency";
 
 const formatIncome = (n: number, suffix: string) =>
   n >= 1_000_000
@@ -85,8 +85,8 @@ const Index = () => {
     { id: "catalog", icon: PawPrint,      label: t("navCatalog") },
     { id: "guide",   icon: BookOpen,      label: t("navGuide") },
     { id: "faq",     icon: HelpCircle,    label: t("navFaq") },
-    { id: "currency", icon: DollarSign,   label: "💱 Currency" },
     { id: "contact", icon: MessageCircle, label: t("navContact") },
+    { id: "currency", icon: DollarSign,   label: "💱 Currency" },
   ];
 
   const priceFor = (b: Brainrot) =>
@@ -210,10 +210,10 @@ const Index = () => {
             onSelect={setSelected}
           />
         )}
-        {section === "guide" && <GuideSection lang={lang} t
-        {section === "currency" && <CurrencyPage />}={t} />}
+        {section === "guide" && <GuideSection lang={lang} t={t} />}
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
+        {section === "currency" && <CurrencyPage />}
       </main>
 
       <BrainrotDialog
