@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
-  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send,
+  ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send, DollarSign,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BrainrotPlayer from "@/components/BrainrotPlayer";
+import { CurrencyPage } from "./Currency";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -57,7 +58,7 @@ const BRAINROTS: Brainrot[] = [
   { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    priceTag: "100M" },
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
-
+ | "currency"
 type Section = "catalog" | "guide" | "faq" | "contact";
 
 const formatIncome = (n: number, suffix: string) =>
@@ -84,6 +85,7 @@ const Index = () => {
     { id: "catalog", icon: PawPrint,      label: t("navCatalog") },
     { id: "guide",   icon: BookOpen,      label: t("navGuide") },
     { id: "faq",     icon: HelpCircle,    label: t("navFaq") },
+    { id: "currency", icon: DollarSign,   label: "💱 Currency" },
     { id: "contact", icon: MessageCircle, label: t("navContact") },
   ];
 
@@ -208,7 +210,8 @@ const Index = () => {
             onSelect={setSelected}
           />
         )}
-        {section === "guide" && <GuideSection lang={lang} t={t} />}
+        {section === "guide" && <GuideSection lang={lang} t
+        {section === "currency" && <CurrencyPage />}={t} />}
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
       </main>
