@@ -48,34 +48,19 @@ const RARITY_HSL: Record<Rarity, string> = {
 };
 
 const BRAINROTS: Brainrot[] = [
-  // Новые брейнроти (150-500 грн)
-  { name: "Griffin",                        rarity: "secret", image: `${import.meta.env.BASE_URL}griffin.svg`,                        income: 400_000_000, priceTag: "400H" },
-  { name: "Hydra Dragon Cannelloni",        rarity: "secret", image: `${import.meta.env.BASE_URL}hydra-dragon-cannelloni.svg`,        income: 350_000_000, priceTag: "350H" },
-  { name: "Headless Horseman",              rarity: "secret", image: `${import.meta.env.BASE_URL}headless-horseman.svg`,              income: 175_000_000, priceTag: "350H" },
-  { name: "Rosey and Teddy",                rarity: "secret", image: `${import.meta.env.BASE_URL}rosey-and-teddy.svg`,                income: 165_000_000, priceTag: "320H" },
-  { name: "Capitano Moby",                  rarity: "secret", image: `${import.meta.env.BASE_URL}capitano-moby.svg`,                  income: 160_000_000, priceTag: "300H" },
-  { name: "Cooki and Milki",                rarity: "secret", image: `${import.meta.env.BASE_URL}cooki-and-milki.svg`,                income: 155_000_000, priceTag: "280H" },
-  { name: "Spooky and Pumpky",              rarity: "secret", image: `${import.meta.env.BASE_URL}spooky-and-pumpky.svg`,              income: 80_000_000,  priceTag: "200H" },
-  { name: "Los Spaghettis",                 rarity: "secret", image: `${import.meta.env.BASE_URL}los-spaghettis.svg`,                 income: 70_000_000,  priceTag: "180H" },
-  { name: "Spaghetti Tualetti",             rarity: "secret", image: `${import.meta.env.BASE_URL}spaghetti-tualetti.svg`,             income: 60_000_000,  priceTag: "160H" },
-  { name: "W or L",                         rarity: "secret", image: `${import.meta.env.BASE_URL}w-or-l.svg`,                         income: 30_000_000,  priceTag: "100H" },
-  { name: "Tralaledon",                     rarity: "secret", image: `${import.meta.env.BASE_URL}tralaledon.svg`,                     income: 27_500_000,  priceTag: "90H" },
-  { name: "Los Candies",                    rarity: "secret", image: `${import.meta.env.BASE_URL}los-candies.svg`,                    income: 23_000_000,  priceTag: "75H" },
-  // Середні брейнроти  
-  { name: "Nuclearo Dinossauro",            rarity: "secret", image: nuclearoDinossauro,                                              income: 15_000_000,  priceTag: "350H" },
-  { name: "La Grande Combinassion",         rarity: "secret", image: grandeCombinazione,                                              income: 10_000_000,  priceTag: "300H" },
-  { name: "Garama and Madundung",           rarity: "secret", image: garamaMadundung,                                                 income: 50_000_000,  priceTag: "250H" },
-  // Старі брейнроти (20-150 грн)
-  { name: "Chicleteria Bicicletera",        rarity: "secret", image: chicleteria,                                                     income: 3_500_000,   priceTag: "120H" },
-  { name: "Pot Hotspot",                    rarity: "secret", image: potHotspot,                                                      income: 2_500_000,   priceTag: "100H" },
-  { name: "Tortugfinni Dragonfrutini",      rarity: "secret", image: tortugfinni,                                                     income: 350_000,     priceTag: "100H" },
-  { name: "Graipuss Medussi",               rarity: "secret", image: graipussMedussi,                                                 income: 1_000_000,   priceTag: "80H" },
-  { name: "Las Vaquitas Saturnitas",        rarity: "secret", image: lasVaquitas,                                                     income: 750_000,     priceTag: "70H" },
-  { name: "Las Tralaleritas",               rarity: "secret", image: lasTralaleritas,                                                 income: 650_000,     priceTag: "60H" },
-  { name: "Los Tralaleritos",               rarity: "secret", image: losTralaleritos,                                                 income: 500_000,     priceTag: "50H" },
-  { name: "Agarrini la Palini",             rarity: "secret", image: agarrini,                                                        income: 425_000,     priceTag: "35H" },
-  { name: "Chimpanzini Spiderini",          rarity: "secret", image: chimpanziniSpiderini,                                            income: 325_000,     priceTag: "40H" },
-  { name: "La Vacca Saturno Saturnita",     rarity: "secret", image: vaccaSaturno,                                                    income: 250_000,     priceTag: "25H" },
+  { name: "Garama and Madundung",      rarity: "secret", image: garamaMadundung,      income: 50_000_000, priceTag: "10B" },
+  { name: "Nuclearo Dinossauro",       rarity: "secret", image: nuclearoDinossauro,   income: 15_000_000, priceTag: "2.5B" },
+  { name: "La Grande Combinassion",    rarity: "secret", image: grandeCombinazione,   income: 10_000_000, priceTag: "1B" },
+  { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  priceTag: "750M" },
+  { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  priceTag: "500M" },
+  { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  priceTag: "250M" },
+  { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    priceTag: "160M" },
+  { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    priceTag: "150M" },
+  { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    priceTag: "150M" },
+  { name: "Agarrini la Palini",        rarity: "secret", image: agarrini,             income: 425_000,    priceTag: "80M" },
+  { name: "Tortugfinni Dragonfrutini", rarity: "secret", image: tortugfinni,          income: 350_000,    priceTag: "500M" },
+  { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    priceTag: "100M" },
+  { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
 type Section = "catalog" | "guide" | "faq" | "contact" | "currency";

@@ -82,31 +82,20 @@ export const CURRENCY_SYMBOL: Record<CurrencyCode, string> = {
   HUF: "Ft",
 };
 
-/** Real-money price in USD for each in-game tag (H = грн hrivnia).
- *  1 USD ≈ 41 ₴. New pricing: old pets 20-150 ₴, new pets 150-500 ₴ */
+/** Real-money price in USD for each in-game tag (B/M).
+ *  Calibrated to UA OLX market: 1 USD ≈ 41 ₴, target range 25–500 ₴ for Secret pets. */
 export const REAL_PRICE_USD: Record<string, number> = {
-  // Нові брейнроти (150-500 грн)
-  "400H": 9.76,   // ~400 ₴
-  "350H": 8.54,   // ~350 ₴
-  "320H": 7.80,   // ~320 ₴
-  "300H": 7.32,   // ~300 ₴
-  "280H": 6.83,   // ~280 ₴
-  "250H": 6.10,   // ~250 ₴
-  "200H": 4.88,   // ~200 ₴
-  "180H": 4.39,   // ~180 ₴
-  "160H": 3.90,   // ~160 ₴
-  "100H": 2.44,   // ~100 ₴
-  "90H":  2.20,   // ~90 ₴
-  "75H":  1.83,   // ~75 ₴
-  // Старі брейнроти (20-150 грн)
-  "120H": 2.93,   // ~120 ₴
-  "80H":  1.95,   // ~80 ₴
-  "70H":  1.71,   // ~70 ₴
-  "60H":  1.46,   // ~60 ₴
-  "50H":  1.22,   // ~50 ₴
-  "40H":  0.98,   // ~40 ₴
-  "35H":  0.85,   // ~35 ₴
-  "25H":  0.61,   // ~25 ₴
+  "10B":  2.4,  // ~100 ₴
+  "2.5B": 1.8,  // ~75 ₴
+  "1B":   1.5,  // ~60 ₴
+  "750M": 1.2,  // ~50 ₴
+  "500M": 1.0,  // ~40 ₴
+  "250M": 0.8,  // ~33 ₴
+  "160M": 0.6,  // ~25 ₴
+  "150M": 0.5,  // ~20 ₴
+  "100M": 0.4,  // ~16 ₴
+  "80M":  0.3,  // ~12 ₴
+  "50M":  0.25, // ~10 ₴
 };
 
 const t = <T extends Record<Lang, string>>(o: T) => o;
