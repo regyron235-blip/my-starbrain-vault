@@ -260,6 +260,14 @@ const CatalogSection = ({
           <div className="text-xs md:text-sm text-white/90 font-semibold">
             Tralalero Tralala · Bombardiro Crocodilo · Lirili Larila 🐊✨
           </div>
+          <a
+            href="https://music.youtube.com/watch?v=6onc3rpArns"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs md:text-sm font-black text-primary shadow-lg hover:bg-white transition-transform hover:scale-105"
+          >
+            🎵 Послухати музику
+          </a>
         </div>
         <div className="text-4xl md:text-6xl animate-spin" style={{ animationDuration: "3s" }}>💀</div>
       </div>
