@@ -21,23 +21,65 @@ export const LANGS: {
 ];
 
 /* ----- Currency ----- */
-export type CurrencyCode = "UAH" | "USD" | "EUR" | "PLN" | "TRY";
+export type CurrencyCode = 
+  | "USD" | "EUR" | "UAH" | "PLN" | "TRY"  // Original 5
+  | "GBP" | "JPY" | "CNY" | "INR" | "RUB"  // Major Asian/Eastern
+  | "KRW" | "BRL" | "AUD" | "CAD" | "CHF"  // Pacific/America
+  | "SEK" | "NOK" | "DKK" | "CZK" | "HUF"; // Scandinavia/Central Europe
 
 /** Approximate USD-based rates (April 2026 baseline). 1 USD = X currency. */
 export const CURRENCY_RATE: Record<CurrencyCode, number> = {
+  // Original 5
   USD: 1,
   UAH: 41,
   EUR: 0.92,
   PLN: 3.95,
   TRY: 38,
+  // Major Asian/Eastern
+  GBP: 0.79,
+  JPY: 154,
+  CNY: 7.2,
+  INR: 83,
+  RUB: 98,
+  // Pacific/America
+  KRW: 1300,
+  BRL: 4.95,
+  AUD: 1.52,
+  CAD: 1.37,
+  CHF: 0.88,
+  // Scandinavia/Central Europe
+  SEK: 10.5,
+  NOK: 10.8,
+  DKK: 6.85,
+  CZK: 23.5,
+  HUF: 350,
 };
 
 export const CURRENCY_SYMBOL: Record<CurrencyCode, string> = {
+  // Original 5
   USD: "$",
   UAH: "₴",
   EUR: "€",
   PLN: "zł",
   TRY: "₺",
+  // Major Asian/Eastern
+  GBP: "£",
+  JPY: "¥",
+  CNY: "¥",
+  INR: "₹",
+  RUB: "₽",
+  // Pacific/America
+  KRW: "₩",
+  BRL: "R$",
+  AUD: "A$",
+  CAD: "C$",
+  CHF: "CHF",
+  // Scandinavia/Central Europe
+  SEK: "kr",
+  NOK: "kr",
+  DKK: "kr",
+  CZK: "Kč",
+  HUF: "Ft",
 };
 
 /** Real-money price in USD for each in-game tag (B/M).
