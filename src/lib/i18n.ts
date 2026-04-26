@@ -108,7 +108,7 @@ export const T = {
   navFaq:       t({ ua: "Питання", en: "FAQ", pl: "FAQ", de: "FAQ", fr: "FAQ", es: "FAQ", it: "FAQ", pt: "FAQ", tr: "SSS", nl: "FAQ" }),
   navContact:   t({ ua: "Контакти", en: "Contacts", pl: "Kontakt", de: "Kontakt", fr: "Contacts", es: "Contactos", it: "Contatti", pt: "Contatos", tr: "İletişim", nl: "Contact" }),
   navCurrency:  t({ ua: "Валюти", en: "Currency", pl: "Waluta", de: "Währung", fr: "Devise", es: "Moneda", it: "Valuta", pt: "Moeda", tr: "Para Birimi", nl: "Valuta" }),
-  searchPh:     t({ ua: "Пошук пета...", en: "Search a pet...", pl: "Szukaj peta...", de: "Pet suchen...", fr: "Chercher un pet...", es: "Buscar mascota...", it: "Cerca un pet...", pt: "Buscar pet...", tr: "Pet ara...", nl: "Zoek pet..." }),
+  searchPh:     t({ ua: "Пошук бреинрота...", en: "Search a pet...", pl: "Szukaj peta...", de: "Pet suchen...", fr: "Chercher un pet...", es: "Buscar mascota...", it: "Cerca un pet...", pt: "Buscar pet...", tr: "Pet ara...", nl: "Zoek pet..." }),
   catalogTitle: t({ ua: "Найдорожчі брейнроти", en: "Most expensive brainrots", pl: "Najdroższe brainroty", de: "Teuerste Brainrots", fr: "Brainrots les plus chers", es: "Brainrots más caros", it: "Brainrot più costosi", pt: "Brainrots mais caros", tr: "En pahalı brainrotlar", nl: "Duurste brainrots" }),
   found:        t({ ua: "Знайдено", en: "Found", pl: "Znaleziono", de: "Gefunden", fr: "Trouvé", es: "Encontrado", it: "Trovati", pt: "Encontrados", tr: "Bulundu", nl: "Gevonden" }),
   pets:         t({ ua: "петів", en: "pets", pl: "petów", de: "Pets", fr: "pets", es: "mascotas", it: "pet", pt: "pets", tr: "pet", nl: "pets" }),
