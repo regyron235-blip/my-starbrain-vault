@@ -85,12 +85,21 @@ export const CURRENCY_SYMBOL: Record<CurrencyCode, string> = {
 /** Real-money price in USD for each in-game tag (B/M).
  *  Calibrated to UA OLX market: 1 USD ≈ 41 ₴, target range 25–500 ₴ for Secret pets. */
 export const REAL_PRICE_USD: Record<string, number> = {
-  "10B":  2.4,  // ~100 ₴
+  "1.5B": 3.0,  // ~123 ₴
+  "1.3B": 2.6,  // ~107 ₴
   "2.5B": 1.8,  // ~75 ₴
   "1B":   1.5,  // ~60 ₴
+  "900M": 1.8,  // ~74 ₴
+  "800M": 1.6,  // ~66 ₴
   "750M": 1.2,  // ~50 ₴
+  "700M": 1.4,  // ~57 ₴
   "500M": 1.0,  // ~40 ₴
+  "400M": 0.8,  // ~33 ₴
+  "350M": 0.7,  // ~29 ₴
+  "300M": 0.6,  // ~25 ₴
   "250M": 0.8,  // ~33 ₴
+  "200M": 0.4,  // ~16 ₴
+  "180M": 0.35, // ~14 ₴
   "160M": 0.6,  // ~25 ₴
   "150M": 0.5,  // ~20 ₴
   "100M": 0.4,  // ~16 ₴
