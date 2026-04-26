@@ -86,7 +86,7 @@ const Index = () => {
     { id: "guide",   icon: BookOpen,      label: t("navGuide") },
     { id: "faq",     icon: HelpCircle,    label: t("navFaq") },
     { id: "contact", icon: MessageCircle, label: t("navContact") },
-    { id: "currency", icon: DollarSign,   label: "💱 Currency" },
+    { id: "currency", icon: DollarSign,   label: t("navCurrency") },
   ];
 
   const priceFor = (b: Brainrot) =>
@@ -213,7 +213,7 @@ const Index = () => {
         {section === "guide" && <GuideSection lang={lang} t={t} />}
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
-        {section === "currency" && <CurrencyPage />}
+        {section === "currency" && <CurrencyPage lang={lang} />}
       </main>
 
       <BrainrotDialog

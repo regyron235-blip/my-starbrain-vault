@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CurrencyCode, CURRENCY_RATE, CURRENCY_SYMBOL } from "@/lib/i18n";
+import { CurrencyCode, CURRENCY_RATE, CURRENCY_SYMBOL, T, type Lang } from "@/lib/i18n";
 import { CURRENCY_NAMES, formatPrice, convertCurrency } from "@/lib/currency";
 import { CurrencySelector } from "@/components/CurrencySelector";
 import {
@@ -21,25 +21,30 @@ const ALL_CURRENCIES: CurrencyCode[] = [
   "SEK", "NOK", "DKK", "CZK", "HUF",
 ];
 
-export function CurrencyPage() {
+interface CurrencyPageProps {
+  lang?: Lang;
+}
+
+export function CurrencyPage({ lang = "en" }: CurrencyPageProps) {
   const [selectedCurrency, setSelectedCurrency] = useState<CurrencyCode>("USD");
   const [amount, setAmount] = useState<number>(100);
-  const lang = "en" as const;
+  
+  const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 md:p-8">
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-white">💱 Currency Exchange</h1>
-          <p className="text-purple-300">20 World Currencies with Real-Time Rates</p>
+          <h1 className="text-4xl font-bold text-white">{t("currencyTitle")}</h1>
+          <p className="text-purple-300">{t("currencySub")}</p>
         </div>
 
         {/* Currency Selector Card */}
         <Card className="border-purple-500/20 bg-slate-800/50 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">Select Currency</CardTitle>
-            <CardDescription>Choose from 20 world currencies</CardDescription>
+            <CardTitle className="text-white">{t("selectCurrency")}</CardTitle>
+            <CardDescription>{t("choose20")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <CurrencySelector
@@ -48,7 +53,7 @@ export function CurrencyPage() {
               lang={lang}
             />
             <div className="bg-slate-700/50 rounded-lg p-4">
-              <p className="text-sm text-gray-400 mb-2">Exchange Rate (1 USD = X currency)</p>
+              <p className="text-sm text-gray-400 mb-2">{t("exchangeRate")} ({t("oneUSD")} {selectedCurrency} = ...)</p>
               <p className="text-2xl font-bold text-white">
                 {CURRENCY_RATE[selectedCurrency].toLocaleString("en-US", {
                   minimumFractionDigits: 2,
@@ -62,13 +67,13 @@ export function CurrencyPage() {
         {/* Price Converter */}
         <Card className="border-purple-500/20 bg-slate-800/50 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">Price Converter</CardTitle>
-            <CardDescription>Convert USD to {selectedCurrency}</CardDescription>
+            <CardTitle className="text-white">{t("converter")}</CardTitle>
+            <CardDescription>{t("convertUSD")} {selectedCurrency}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="amount" className="text-white">
-                Amount in USD
+                {t("amountUSD")}
               </Label>
               <Input
                 id="amount"
@@ -76,11 +81,11 @@ export function CurrencyPage() {
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
                 className="bg-slate-700 border-purple-500/30 text-white"
-                placeholder="Enter USD amount"
+                placeholder={t("enterUSD")}
               />
             </div>
             <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-4 border border-purple-500/30">
-              <p className="text-sm text-gray-400 mb-2">Result in {selectedCurrency}</p>
+              <p className="text-sm text-gray-400 mb-2">{t("resultIn")} {selectedCurrency}</p>
               <p className="text-3xl font-bold text-white">
                 {formatPrice(amount, selectedCurrency)}
               </p>
@@ -91,9 +96,9 @@ export function CurrencyPage() {
         {/* All Currencies Table */}
         <Card className="border-purple-500/20 bg-slate-800/50 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">All 20 Currencies</CardTitle>
+            <CardTitle className="text-white">{t("allCurrencies")}</CardTitle>
             <CardDescription>
-              Exchange rates and conversion of ${amount.toFixed(2)} USD
+              {t("rates")} ${amount.toFixed(2)} USD
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -101,10 +106,10 @@ export function CurrencyPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-purple-500/20 hover:bg-slate-700/50">
-                    <TableHead className="text-gray-400">Code</TableHead>
-                    <TableHead className="text-gray-400">Name</TableHead>
-                    <TableHead className="text-gray-400">Symbol</TableHead>
-                    <TableHead className="text-right text-gray-400">Rate (1 USD)</TableHead>
+                    <TableHead className="text-gray-400">{t("codeCol")}</TableHead>
+                    <TableHead className="text-gray-400">{t("nameCol")}</TableHead>
+                    <TableHead className="text-gray-400">{t("symbolCol")}</TableHead>
+                    <TableHead className="text-right text-gray-400">{t("rateCol")}</TableHead>
                     <TableHead className="text-right text-gray-400">${amount} USD</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -145,21 +150,21 @@ export function CurrencyPage() {
         {/* Info Card */}
         <Card className="border-purple-500/20 bg-slate-800/50 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">💡 About These Rates</CardTitle>
+            <CardTitle className="text-white">ℹ️ {t("aboutRates")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-gray-300">
             <p>
-              These rates are <strong>approximate baseline rates for April 2026</strong> and are used for demo purposes.
+              {t("ratesInfo")}
             </p>
             <p>
-              The system includes <strong>20 major world currencies</strong>:
+              {t("includesInfo")}:
             </p>
             <ul className="list-disc list-inside space-y-1 text-sm ml-2">
-              <li>Major: USD, EUR, GBP, JPY, CHF</li>
-              <li>Eastern Europe: UAH, PLN, TRY, RUB, CZK, HUF</li>
-              <li>Asia: CNY, INR, KRW</li>
-              <li>Americas: BRL, CAD, AUD</li>
-              <li>Nordics: SEK, NOK, DKK</li>
+              <li>{t("major")}: USD, EUR, GBP, JPY, CHF</li>
+              <li>{t("eastEurope")}: UAH, PLN, TRY, RUB, CZK, HUF</li>
+              <li>{t("asia")}: CNY, INR, KRW</li>
+              <li>{t("americas")}: BRL, CAD, AUD</li>
+              <li>{t("nordics")}: SEK, NOK, DKK</li>
             </ul>
           </CardContent>
         </Card>
