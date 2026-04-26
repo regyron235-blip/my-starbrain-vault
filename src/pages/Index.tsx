@@ -2,9 +2,13 @@ import { useMemo, useState } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
   ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send, DollarSign,
+  ArrowDownUp,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from "@/components/ui/select";
 import BrainrotPlayer from "@/components/BrainrotPlayer";
 import { CurrencyPage } from "./Currency";
 import {
@@ -69,15 +73,33 @@ const formatIncome = (n: number, suffix: string) =>
 const Index = () => {
   const [section, setSection] = useState<Section>("catalog");
   const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState<"price-asc" | "price-desc" | "income">("price-asc");
   const [lang, setLang] = useState<Lang>("ua");
   const [selected, setSelected] = useState<Brainrot | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
-  const filtered = useMemo(
-    () => BRAINROTS.filter((b) => b.name.toLowerCase().includes(query.toLowerCase())),
-    [query],
-  );
+  const filtered = useMemo(() => {
+    let result = BRAINROTS.filter((b) => b.name.toLowerCase().includes(query.toLowerCase()));
+    
+    // Parse price function
+    const parsePrice = (priceTag: string): number => {
+      const num = parseInt(priceTag.replace(/[BM]/g, ""));
+      if (priceTag.includes("B")) return num * 1_000; // Convert billions to millions
+      return num;
+    };
+    
+    // Apply sorting
+    if (sortBy === "price-asc") {
+      result = [...result].sort((a, b) => parsePrice(a.priceTag) - parsePrice(b.priceTag));
+    } else if (sortBy === "price-desc") {
+      result = [...result].sort((a, b) => parsePrice(b.priceTag) - parsePrice(a.priceTag));
+    } else if (sortBy === "income") {
+      result = [...result].sort((a, b) => b.income - a.income);
+    }
+    
+    return result;
+  }, [query, sortBy]);
 
   const currentLang = LANGS.find((l) => l.code === lang)!;
 
@@ -204,6 +226,8 @@ const Index = () => {
             filtered={filtered}
             query={query}
             setQuery={setQuery}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
             t={t}
             lang={lang}
             priceFor={priceFor}
@@ -238,9 +262,10 @@ const Index = () => {
 /* ---------- Sections ---------- */
 
 const CatalogSection = ({
-  filtered, query, setQuery, t, lang, priceFor, onSelect,
+  filtered, query, setQuery, sortBy, setSortBy, t, lang, priceFor, onSelect,
 }: {
   filtered: Brainrot[]; query: string; setQuery: (v: string) => void;
+  sortBy: "price-asc" | "price-desc" | "income"; setSortBy: (v: "price-asc" | "price-desc" | "income") => void;
   t: (k: keyof typeof T) => string; lang: Lang;
   priceFor: (b: Brainrot) => string;
   onSelect: (b: Brainrot) => void;
@@ -282,14 +307,27 @@ const CatalogSection = ({
           {t("found")} {filtered.length} {t("pets")}
         </p>
       </div>
-      <div className="relative w-full md:w-80">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={t("searchPh")}
-          className="pl-9 bg-secondary border-border"
-        />
+      <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+        <div className="relative flex-1 md:flex-none md:w-80">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t("searchPh")}
+            className="pl-9 bg-secondary border-border"
+          />
+        </div>
+        <Select value={sortBy} onValueChange={(v: any) => setSortBy(v)}>
+          <SelectTrigger className="w-full md:w-auto bg-secondary border-border">
+            <ArrowDownUp className="h-4 w-4 mr-2" />
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="price-asc">{t("sortCheapToExpensive")}</SelectItem>
+            <SelectItem value="price-desc">{t("sortExpensiveToCheap")}</SelectItem>
+            <SelectItem value="income">{t("sortByIncome")}</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
     </header>
 

@@ -153,6 +153,9 @@ export const T = {
   asia:        t({ ua: "Азія", en: "Asia", pl: "Azja", de: "Asien", fr: "Asie", es: "Asia", it: "Asia", pt: "Ásia", tr: "Asya", nl: "Azië" }),
   americas:    t({ ua: "Америка", en: "Americas", pl: "Ameryka", de: "Amerika", fr: "Amériques", es: "Américas", it: "Americhe", pt: "Américas", tr: "Amerika", nl: "Amerika" }),
   nordics:     t({ ua: "Північні країни", en: "Nordics", pl: "Kraje nordyckie", de: "Nordische Länder", fr: "Pays nordiques", es: "Países nórdicos", it: "Paesi nordici", pt: "Países nórdicos", tr: "İskandinav Ülkeleri", nl: "Scandinavische landen" }),
+  sortCheapToExpensive: t({ ua: "Дешеві до дорогих", en: "Cheap to Expensive", pl: "Tanie do drogich", de: "Günstig bis teuer", fr: "Pas cher à cher", es: "Barato a caro", it: "Economico a costoso", pt: "Barato a caro", tr: "Ucuz'dan Pahalıya", nl: "Goedkoop tot duur" }),
+  sortExpensiveToCheap: t({ ua: "Дорогі до дешевих", en: "Expensive to Cheap", pl: "Drogie do tanich", de: "Teuer bis günstig", fr: "Cher à pas cher", es: "Caro a barato", it: "Costoso a economico", pt: "Caro a barato", tr: "Pahalıdan Ucuza", nl: "Duur tot goedkoop" }),
+  sortByIncome: t({ ua: "За доходом /сек", en: "By Income /sec", pl: "Według dochodu /sek", de: "Nach Einkommen /sek", fr: "Par revenu /sec", es: "Por ingresos /seg", it: "Per guadagno /sec", pt: "Por renda /seg", tr: "Gelire Göre /sn", nl: "Op inkomsten /sec" }),
 } as const;
 
 type Step = { t: string; d: string };
