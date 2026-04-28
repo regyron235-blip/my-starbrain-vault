@@ -77,6 +77,8 @@ const THEMES = [
   { name: "Індиго", hsl: "244 77% 63%", color: "#6366f1" },
   { name: "Золотисте", hsl: "38 92% 50%", color: "#f59e0b" },
   { name: "Бузок", hsl: "268 85% 60%", color: "#a855f7" },
+  { name: "Біле", hsl: "0 0% 100%", color: "#ffffff" },
+  { name: "Чорне", hsl: "0 0% 0%", color: "#000000" },
 ];
 
 const formatIncome = (n: number, suffix: string) =>
