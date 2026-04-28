@@ -175,12 +175,12 @@ const Index = () => {
       </aside>
 
       {/* Main */}
-      <main className="flex-1 p-4 md:p-10 min-w-0">
+      <main className="flex-1 p-4 md:p-10 min-w-0 overflow-x-hidden">
         {/* Mobile top bar */}
         <div className="md:hidden mb-5 space-y-3">
           <div className="flex items-center justify-between gap-3">
             <h1
-              className="text-xl font-black tracking-tight bg-clip-text text-transparent"
+              className="text-2xl font-black tracking-tight bg-clip-text text-transparent"
               style={{ backgroundImage: "var(--gradient-primary)" }}
             >
               {t("brand")}
@@ -189,15 +189,15 @@ const Index = () => {
               href="https://t.me/snipern_TY"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-foreground"
+              className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-semibold text-foreground h-10"
             >
-              <Send className="h-3.5 w-3.5 text-primary" />
+              <Send className="h-4 w-4 text-primary" />
               @snipern_TY
             </a>
           </div>
           <button
             onClick={() => setLangOpen(true)}
-            className="flex w-full items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm"
+            className="flex w-full items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2.5 text-sm h-10"
           >
             <span className="flex h-6 w-6 items-center justify-center rounded bg-primary/20 text-[10px] font-bold text-primary">
               {currentLang.cc}
@@ -211,7 +211,7 @@ const Index = () => {
               <button
                 key={id}
                 onClick={() => setSection(id)}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap ${
+                className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium whitespace-nowrap h-10 ${
                   section === id ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"
                 }`}
               >
@@ -300,27 +300,27 @@ const CatalogSection = ({
 
     <header className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
-        <h2 className="text-2xl md:text-4xl font-bold mb-2 flex items-center gap-2 md:gap-3">
-          <Crown className="h-6 w-6 md:h-8 md:w-8 text-brainrot-god" />
+        <h2 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-2 md:gap-3">
+          <Crown className="h-7 w-7 md:h-8 md:w-8 text-brainrot-god" />
           {t("catalogTitle")}
         </h2>
-        <p className="text-sm md:text-base text-muted-foreground">
+        <p className="text-base md:text-base text-muted-foreground">
           {t("found")} {filtered.length} {t("pets")}
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
         <div className="relative flex-1 md:flex-none md:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("searchPh")}
-            className="pl-9 bg-secondary border-border"
+            className="pl-10 h-11 bg-secondary border-border text-base"
           />
         </div>
         <Select value={sortBy} onValueChange={(v: any) => setSortBy(v)}>
-          <SelectTrigger className="w-full md:w-auto bg-secondary border-border">
-            <ArrowDownUp className="h-4 w-4 mr-2" />
+          <SelectTrigger className="w-full md:w-auto h-11 bg-secondary border-border">
+            <ArrowDownUp className="h-5 w-5 mr-2" />
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -332,13 +332,13 @@ const CatalogSection = ({
       </div>
     </header>
 
-    <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
+    <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
       {filtered.map((b) => {
         const color = RARITY_HSL[b.rarity];
         return (
           <article
             key={b.name}
-            className="group rounded-2xl border-2 p-3 md:p-5 transition-all hover:-translate-y-1"
+            className="group rounded-2xl border-2 p-4 md:p-5 transition-all hover:-translate-y-1"
             style={{
               backgroundImage: "var(--gradient-card)",
               boxShadow: "var(--shadow-card)",
@@ -354,7 +354,7 @@ const CatalogSection = ({
             }}
           >
             <div
-              className="text-center mb-2 md:mb-3 rounded-lg py-1 md:py-1.5 font-black text-[10px] md:text-xs tracking-widest"
+              className="text-center mb-2 md:mb-3 rounded-lg py-1.5 md:py-1.5 font-black text-xs md:text-xs tracking-widest"
               style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
             >
               {RARITY_LABEL[b.rarity]}
@@ -363,7 +363,7 @@ const CatalogSection = ({
             <button
               type="button"
               onClick={() => onSelect(b)}
-              className="flex items-center justify-center h-24 md:h-40 mb-3 md:mb-4 w-full"
+              className="flex items-center justify-center h-32 md:h-40 mb-3 md:mb-4 w-full"
               aria-label={b.name}
             >
               <img
@@ -376,11 +376,11 @@ const CatalogSection = ({
               />
             </button>
 
-            <h3 className="text-center font-bold text-sm md:text-lg mb-2 md:mb-3 leading-tight line-clamp-2 min-h-[2.5em]">{b.name}</h3>
+            <h3 className="text-center font-bold text-base md:text-lg mb-2 md:mb-3 leading-tight line-clamp-2 min-h-[2.5em]">{b.name}</h3>
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-xs md:text-sm mb-3 md:mb-4 px-1">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-sm md:text-sm mb-3 md:mb-4 px-1">
               <span className="flex items-center gap-1 font-semibold truncate" style={{ color: `hsl(${color})` }}>
-                <Zap className="h-3 w-3 md:h-3.5 md:w-3.5 shrink-0" />
+                <Zap className="h-4 w-4 md:h-3.5 md:w-3.5 shrink-0" />
                 {formatIncome(b.income, t("perSec"))}
               </span>
               <span className="font-semibold text-foreground truncate">{priceFor(b)}</span>
@@ -389,10 +389,10 @@ const CatalogSection = ({
             <Button
               type="button"
               onClick={() => onSelect(b)}
-              className="w-full h-9 md:h-10 text-xs md:text-sm"
+              className="w-full h-11 md:h-10 text-sm md:text-sm"
               style={{ backgroundImage: "var(--gradient-primary)" }}
             >
-              <ShoppingCart className="mr-1.5 md:mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
+              <ShoppingCart className="mr-1.5 md:mr-2 h-4 w-4 md:h-4 md:w-4" />
               {(T.details as Record<Lang, string>)[lang]}
             </Button>
           </article>
