@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
   ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send, DollarSign,
@@ -64,7 +64,20 @@ const BRAINROTS: Brainrot[] = [
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
-type Section = "catalog" | "guide" | "faq" | "contact" | "currency";
+type Section = "catalog" | "guide" | "faq" | "contact" | "currency" | "theme";
+
+const THEMES = [
+  { name: "Фіолет", hsl: "262 83% 65%", color: "#8b5cf6" },
+  { name: "Рожеве", hsl: "334 78% 69%", color: "#ec4899" },
+  { name: "Синє", hsl: "217 92% 57%", color: "#3b82f6" },
+  { name: "Зелене", hsl: "160 84% 39%", color: "#10b981" },
+  { name: "Оранжеве", hsl: "25 94% 55%", color: "#f97316" },
+  { name: "Червоне", hsl: "0 84% 60%", color: "#ef4444" },
+  { name: "Циан", hsl: "188 94% 42%", color: "#06b6d4" },
+  { name: "Індиго", hsl: "244 77% 63%", color: "#6366f1" },
+  { name: "Золотисте", hsl: "38 92% 50%", color: "#f59e0b" },
+  { name: "Бузок", hsl: "268 85% 60%", color: "#a855f7" },
+];
 
 const formatIncome = (n: number, suffix: string) =>
   n >= 1_000_000
@@ -78,7 +91,13 @@ const Index = () => {
   const [lang, setLang] = useState<Lang>("ua");
   const [selected, setSelected] = useState<Brainrot | null>(null);
   const [langOpen, setLangOpen] = useState(false);
+  const [themeColor, setThemeColor] = useState(0);
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
+
+  // Применить цвет при загрузке и при смене темы
+  useEffect(() => {
+    document.documentElement.style.setProperty("--primary", THEMES[themeColor].hsl);
+  }, [themeColor]);
 
   const filtered = useMemo(() => {
     let result = BRAINROTS.filter((b) => b.name.toLowerCase().includes(query.toLowerCase()));
@@ -110,6 +129,7 @@ const Index = () => {
     { id: "faq",     icon: HelpCircle,    label: t("navFaq") },
     { id: "contact", icon: MessageCircle, label: t("navContact") },
     { id: "currency", icon: DollarSign,   label: t("navCurrency") },
+    { id: "theme",   icon: Sparkles,      label: "Тема" },
   ];
 
   const priceFor = (b: Brainrot) =>
@@ -239,6 +259,13 @@ const Index = () => {
         {section === "faq" && <FaqSection lang={lang} t={t} />}
         {section === "contact" && <ContactSection t={t} />}
         {section === "currency" && <CurrencyPage lang={lang} />}
+        {section === "theme" && (
+          <ThemeSection
+            themes={THEMES}
+            selectedTheme={themeColor}
+            onSelectTheme={setThemeColor}
+          />
+        )}
       </main>
 
       <BrainrotDialog
@@ -477,6 +504,56 @@ const BrainrotDialog = ({
     </Dialog>
   );
 };
+
+const ThemeSection = ({
+  themes,
+  selectedTheme,
+  onSelectTheme,
+}: {
+  themes: typeof THEMES;
+  selectedTheme: number;
+  onSelectTheme: (idx: number) => void;
+}) => (
+  <div className="space-y-6">
+    <div>
+      <h2 className="text-3xl font-bold mb-2">🎨 Вибір Теми</h2>
+      <p className="text-muted-foreground">Виберіть колірну схему для сайту</p>
+    </div>
+
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {themes.map((theme, idx) => (
+        <button
+          key={idx}
+          onClick={() => {
+            onSelectTheme(idx);
+            document.documentElement.style.setProperty("--primary", theme.hsl);
+          }}
+          className={`relative rounded-2xl overflow-hidden p-6 border-2 transition-all ${
+            selectedTheme === idx
+              ? "border-primary scale-105 shadow-xl"
+              : "border-border hover:scale-105"
+          }`}
+          style={{
+            background: `linear-gradient(135deg, ${theme.color}33 0%, ${theme.color}11 100%)`,
+          }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <div
+              className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
+              style={{ backgroundColor: theme.color }}
+            />
+            <span className="text-sm font-medium text-center">{theme.name}</span>
+          </div>
+          {selectedTheme === idx && (
+            <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+              <span className="text-white text-xs">✓</span>
+            </div>
+          )}
+        </button>
+      ))}
+    </div>
+  </div>
+);
 
 const LangDialog = ({
   open, onClose, current, onPick, t,
