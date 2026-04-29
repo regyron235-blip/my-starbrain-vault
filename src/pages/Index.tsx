@@ -354,10 +354,10 @@ const CatalogSection = ({
       <div>
         <h2 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-2 md:gap-3">
           <Crown className="h-7 w-7 md:h-8 md:w-8 text-brainrot-god" />
-          {t("catalogTitle")}
+          {catalogId === "murder-mystery-2" ? "Найдорожчі предмети" : t("catalogTitle")}
         </h2>
         <p className="text-base md:text-base text-muted-foreground">
-          {t("found")} {filtered.length} {t("pets")}
+          {t("found")} {filtered.length} {catalogId === "murder-mystery-2" ? "предметів" : t("pets")}
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
@@ -366,7 +366,7 @@ const CatalogSection = ({
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={t("searchPh")}
+            placeholder={catalogId === "murder-mystery-2" ? "Пошук предмету..." : t("searchPh")}
             className="pl-10 h-11 bg-secondary border-border text-base"
           />
         </div>
