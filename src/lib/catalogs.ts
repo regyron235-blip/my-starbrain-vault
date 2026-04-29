@@ -45,23 +45,10 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
-const MURDER_MYSTERY_2_ITEMS: Item[] = [
-  { name: "Heartblade knife",          rarity: "secret", image: vaccaSaturno,         income: 1_500_000,  priceTag: "2" }, // 74 грн ≈ $2 USD
-  { name: "Dark Whisper Dagger",       rarity: "secret", image: garamaMadundung,      income: 2_000_000,  priceTag: "5B" },
-  { name: "Midnight Assassin",         rarity: "secret", image: nuclearoDinossauro,   income: 8_000_000,  priceTag: "1.5B" },
-  { name: "Shadow Stalker",            rarity: "secret", image: grandeCombinazione,   income: 5_500_000,  priceTag: "800M" },
-  { name: "Crimson Vengeance",         rarity: "secret", image: chicleteria,          income: 3_000_000,  priceTag: "600M" },
-];
-
 export const CATALOGS: Catalog[] = [
   {
     id: "steal-in-brainrot",
     name: "Steal in brainrot",
     items: STEAL_IN_BRAINROT_ITEMS,
-  },
-  {
-    id: "murder-mystery-2",
-    name: "Murder Mystery 2",
-    items: MURDER_MYSTERY_2_ITEMS,
   },
 ];
