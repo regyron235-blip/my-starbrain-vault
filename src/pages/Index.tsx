@@ -73,6 +73,13 @@ const Index = () => {
     document.documentElement.style.setProperty("--primary", THEMES[themeColor].hsl);
   }, [themeColor]);
 
+  // Сбросить сортировку по доходу при переключении на Murder Mystery 2
+  useEffect(() => {
+    if (catalogId === "murder-mystery-2" && sortBy === "income") {
+      setSortBy("price-asc");
+    }
+  }, [catalogId, sortBy, setSortBy]);
+
   const currentCatalog = CATALOGS.find((c) => c.id === catalogId) || CATALOGS[0];
   const BRAINROTS = currentCatalog.items;
 
@@ -371,7 +378,9 @@ const CatalogSection = ({
           <SelectContent>
             <SelectItem value="price-asc">{t("sortCheapToExpensive")}</SelectItem>
             <SelectItem value="price-desc">{t("sortExpensiveToCheap")}</SelectItem>
-            <SelectItem value="income">{t("sortByIncome")}</SelectItem>
+            {catalogId !== "murder-mystery-2" && (
+              <SelectItem value="income">{t("sortByIncome")}</SelectItem>
+            )}
           </SelectContent>
         </Select>
       </div>
