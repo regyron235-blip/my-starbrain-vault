@@ -45,10 +45,17 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
+const MURDER_MYSTERY_2_ITEMS: Item[] = [];
+
 export const CATALOGS: Catalog[] = [
   {
     id: "steal-in-brainrot",
     name: "Steal in brainrot",
     items: STEAL_IN_BRAINROT_ITEMS,
+  },
+  {
+    id: "murder-mystery-2",
+    name: "Murder Mystery 2",
+    items: MURDER_MYSTERY_2_ITEMS,
   },
 ];
