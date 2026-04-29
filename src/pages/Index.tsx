@@ -265,6 +265,7 @@ const Index = () => {
             lang={lang}
             priceFor={priceFor}
             onSelect={setSelected}
+            catalogId={catalogId}
           />
         )}
         {section === "guide" && <GuideSection lang={lang} t={t} />}
@@ -302,13 +303,14 @@ const Index = () => {
 /* ---------- Sections ---------- */
 
 const CatalogSection = ({
-  filtered, query, setQuery, sortBy, setSortBy, t, lang, priceFor, onSelect,
+  filtered, query, setQuery, sortBy, setSortBy, t, lang, priceFor, onSelect, catalogId,
 }: {
   filtered: Brainrot[]; query: string; setQuery: (v: string) => void;
   sortBy: "price-asc" | "price-desc" | "income"; setSortBy: (v: "price-asc" | "price-desc" | "income") => void;
   t: (k: keyof typeof T) => string; lang: Lang;
   priceFor: (b: Brainrot) => string;
   onSelect: (b: Brainrot) => void;
+  catalogId: string;
 }) => (
   <>
     <div 
@@ -422,11 +424,13 @@ const CatalogSection = ({
             <h3 className="text-center font-bold text-base md:text-lg mb-2 md:mb-3 leading-tight line-clamp-2 min-h-[2.5em]">{b.name}</h3>
 
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 text-sm md:text-sm mb-3 md:mb-4 px-1">
-              <span className="flex items-center gap-1 font-semibold truncate" style={{ color: `hsl(${color})` }}>
-                <Zap className="h-4 w-4 md:h-3.5 md:w-3.5 shrink-0" />
-                {formatIncome(b.income, t("perSec"))}
-              </span>
-              <span className="font-semibold text-foreground truncate">{priceFor(b)}</span>
+              {catalogId !== "murder-mystery-2" && (
+                <span className="flex items-center gap-1 font-semibold truncate" style={{ color: `hsl(${color})` }}>
+                  <Zap className="h-4 w-4 md:h-3.5 md:w-3.5 shrink-0" />
+                  {formatIncome(b.income, t("perSec"))}
+                </span>
+              )}
+              <span className="font-semibold text-foreground truncate" style={{ marginLeft: catalogId === "murder-mystery-2" ? "auto" : "0" }}>{priceFor(b)}</span>
             </div>
 
             <Button
