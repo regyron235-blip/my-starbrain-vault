@@ -46,7 +46,7 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
 ];
 
 const MURDER_MYSTERY_2_ITEMS: Item[] = [
-  { name: "Heartblade",                rarity: "secret", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%23333' width='512' height='512'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='48' fill='%23999' font-family='Arial'%3ENo Image%3C/text%3E%3C/svg%3E", income: 0, priceTag: "1.59" },
+  { name: "Heartblade",                rarity: "secret", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23222' width='200' height='200'/%3E%3Crect x='70' y='40' width='60' height='120' fill='%23e74c3c'/%3E%3Cpolygon points='100,30 120,50 80,50' fill='%23c0392b'/%3E%3C/svg%3E", income: 0, priceTag: "1.59" },
 ];
 
 export const CATALOGS: Catalog[] = [
