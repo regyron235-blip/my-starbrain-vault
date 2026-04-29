@@ -54,7 +54,7 @@ const BRAINROTS: Brainrot[] = [
   { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  priceTag: "750M" },
   { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  priceTag: "500M" },
   { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  priceTag: "250M" },
-  { name: "Los Candies",               rarity: "secret", image: `${import.meta.env.BASE_URL}los-candies.png`,                    income: 23_000_000,  priceTag: "150M" },
+  { name: "Los Candies",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_i6bmuei6bmuei6bm.png`, income: 23_000_000,  priceTag: "150M" },
   { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    priceTag: "160M" },
   { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    priceTag: "150M" },
   { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    priceTag: "150M" },
