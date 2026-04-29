@@ -96,6 +96,11 @@ export const REAL_PRICE_USD: Record<string, number> = {
   "100M": 0.4,  // ~16 ₴
   "80M":  0.3,  // ~12 ₴
   "50M":  0.25, // ~10 ₴
+  "5B":   1.95, // ~80 ₴
+  "1.5B": 1.5,  // ~60 ₴
+  "800M": 1.1,  // ~45 ₴
+  "600M": 0.85, // ~35 ₴
+  "2":    1.8,  // ~74 ₴ (Heartblade knife special)
 };
 
 const t = <T extends Record<Lang, string>>(o: T) => o;

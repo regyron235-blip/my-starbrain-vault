@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import {
   Search, PawPrint, BookOpen, HelpCircle, MessageCircle,
   ShoppingCart, Sparkles, TrendingUp, Crown, Zap, Globe, X, Send, DollarSign,
-  ArrowDownUp,
+  ArrowDownUp, ChevronDown,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,51 +19,21 @@ import {
   T, LANGS, RARITY_LABEL, GUIDE, FAQ, REAL_PRICE_USD, formatPrice,
   type Lang,
 } from "@/lib/i18n";
+import { CATALOGS, type Item } from "@/lib/catalogs";
 
-import grandeCombinazione from "@/assets/grande-combinazione.webp";
-import vaccaSaturno from "@/assets/vacca-saturno.webp";
-import losTralaleritos from "@/assets/los-tralaleritos.webp";
-import garamaMadundung from "@/assets/garama-madundung.webp";
-import chimpanziniSpiderini from "@/assets/chimpanzini-spiderini.webp";
-import lasTralaleritas from "@/assets/las-tralaleritas.webp";
-import nuclearoDinossauro from "@/assets/nuclearo-dinossauro.webp";
-import graipussMedussi from "@/assets/graipuss-medussi.webp";
-import potHotspot from "@/assets/pot-hotspot.webp";
-import tortugfinni from "@/assets/tortugfinni.webp";
-import lasVaquitas from "@/assets/las-vaquitas.webp";
-import chicleteria from "@/assets/chicleteria.webp";
-import agarrini from "@/assets/agarrini.webp";
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Rarity = "secret";
 
-interface Brainrot {
-  name: string;
-  rarity: Rarity;
-  image: string;
-  income: number; // dollars per second (in-game)
-  priceTag: string; // in-game price tag, key into REAL_PRICE_USD
+interface Brainrot extends Item {
+  // Brainrot type alias for Item
 }
 
 const RARITY_HSL: Record<Rarity, string> = {
   secret: "var(--secret)",
 };
-
-const BRAINROTS: Brainrot[] = [
-  { name: "Garama and Madundung",      rarity: "secret", image: garamaMadundung,      income: 50_000_000, priceTag: "10B" },
-  { name: "Nuclearo Dinossauro",       rarity: "secret", image: nuclearoDinossauro,   income: 15_000_000, priceTag: "2.5B" },
-  { name: "La Grande Combinassion",    rarity: "secret", image: grandeCombinazione,   income: 10_000_000, priceTag: "1B" },
-  { name: "Chicleteria Bicicletera",   rarity: "secret", image: chicleteria,          income: 3_500_000,  priceTag: "750M" },
-  { name: "Pot Hotspot",               rarity: "secret", image: potHotspot,           income: 2_500_000,  priceTag: "500M" },
-  { name: "Graipuss Medussi",          rarity: "secret", image: graipussMedussi,      income: 1_000_000,  priceTag: "250M" },
-  { name: "Los Candies",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_i6bmuei6bmuei6bm.png`, income: 23_000_000,  priceTag: "150M" },
-  { name: "Las Vaquitas Saturnitas",   rarity: "secret", image: lasVaquitas,          income: 750_000,    priceTag: "160M" },
-  { name: "Las Tralaleritas",          rarity: "secret", image: lasTralaleritas,      income: 650_000,    priceTag: "150M" },
-  { name: "Los Tralaleritos",          rarity: "secret", image: losTralaleritos,      income: 500_000,    priceTag: "150M" },
-  { name: "Agarrini la Palini",        rarity: "secret", image: agarrini,             income: 425_000,    priceTag: "80M" },
-  { name: "Tortugfinni Dragonfrutini", rarity: "secret", image: tortugfinni,          income: 350_000,    priceTag: "500M" },
-  { name: "Chimpanzini Spiderini",     rarity: "secret", image: chimpanziniSpiderini, income: 325_000,    priceTag: "100M" },
-  { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
-];
 
 type Section = "catalog" | "guide" | "faq" | "contact" | "currency" | "theme";
 
@@ -95,12 +65,16 @@ const Index = () => {
   const [selected, setSelected] = useState<Brainrot | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const [themeColor, setThemeColor] = useState(0);
+  const [catalogId, setCatalogId] = useState("steal-in-brainrot");
   const t = (k: keyof typeof T) => (T[k] as Record<Lang, string>)[lang];
 
   // Применить цвет при загрузке и при смене темы
   useEffect(() => {
     document.documentElement.style.setProperty("--primary", THEMES[themeColor].hsl);
   }, [themeColor]);
+
+  const currentCatalog = CATALOGS.find((c) => c.id === catalogId) || CATALOGS[0];
+  const BRAINROTS = currentCatalog.items;
 
   const filtered = useMemo(() => {
     let result = BRAINROTS.filter((b) => b.name.toLowerCase().includes(query.toLowerCase()));
@@ -122,7 +96,7 @@ const Index = () => {
     }
     
     return result;
-  }, [query, sortBy]);
+  }, [query, sortBy, BRAINROTS]);
 
   const currentLang = LANGS.find((l) => l.code === lang)!;
 
@@ -146,6 +120,28 @@ const Index = () => {
           <LogoBrainrot className="w-full mb-3" />
           <p className="text-xs text-muted-foreground mt-3 text-center">{t("tagline")}</p>
         </div>
+
+        {/* Catalog selector */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="flex items-center gap-3 rounded-xl bg-primary text-primary-foreground px-4 py-3 text-sm font-semibold hover:bg-primary/90 transition-colors shadow-[var(--shadow-glow)]">
+              <span className="flex-1 text-left">{currentCatalog.name}</span>
+              <ChevronDown className="h-4 w-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            {CATALOGS.map((catalog) => (
+              <DropdownMenuItem
+                key={catalog.id}
+                onClick={() => setCatalogId(catalog.id)}
+                className={catalogId === catalog.id ? "bg-primary/20" : ""}
+              >
+                <span className="font-medium">{catalog.name}</span>
+                {catalogId === catalog.id && <span className="ml-auto">✓</span>}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         <nav className="flex flex-col gap-1">
           {NAV.map(({ id, icon: Icon, label }) => (
@@ -210,6 +206,27 @@ const Index = () => {
               @snipern_TY
             </a>
           </div>
+          {/* Mobile catalog selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="w-full flex items-center gap-3 rounded-xl bg-primary text-primary-foreground px-4 py-2.5 text-sm font-semibold hover:bg-primary/90 transition-colors h-10">
+                <span className="flex-1 text-left">{currentCatalog.name}</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-full">
+              {CATALOGS.map((catalog) => (
+                <DropdownMenuItem
+                  key={catalog.id}
+                  onClick={() => setCatalogId(catalog.id)}
+                  className={catalogId === catalog.id ? "bg-primary/20" : ""}
+                >
+                  <span className="font-medium">{catalog.name}</span>
+                  {catalogId === catalog.id && <span className="ml-auto">✓</span>}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <button
             onClick={() => setLangOpen(true)}
             className="flex w-full items-center gap-3 rounded-xl border border-border bg-secondary/40 px-3 py-2.5 text-sm h-10"
