@@ -143,14 +143,8 @@ const Index = () => {
       {/* Sidebar */}
       <aside className="hidden md:flex w-64 shrink-0 flex-col gap-6 border-r border-border bg-card/40 p-6">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <LogoBrainrot className="h-10 w-10" />
-            <div>
-              <h1 className="text-lg font-black tracking-tight leading-tight">BRAINROT</h1>
-              <p className="text-xs font-bold tracking-widest text-primary">ELITE</p>
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground mt-2">{t("tagline")}</p>
+          <LogoBrainrot className="w-full mb-3" />
+          <p className="text-xs text-muted-foreground mt-3 text-center">{t("tagline")}</p>
         </div>
 
         <nav className="flex flex-col gap-1">
@@ -203,12 +197,8 @@ const Index = () => {
         {/* Mobile top bar */}
         <div className="md:hidden mb-5 space-y-3">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <LogoBrainrot className="h-8 w-8" />
-              <div>
-                <h1 className="text-lg font-black tracking-tight leading-tight">BRAINROT</h1>
-                <p className="text-xs font-bold tracking-widest text-primary">ELITE</p>
-              </div>
+            <div className="flex-1 max-w-xs">
+              <LogoBrainrot className="w-full" />
             </div>
             <a
               href="https://t.me/snipern_TY"
