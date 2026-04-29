@@ -388,7 +388,9 @@ const CatalogSection = ({
 
     <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
       {filtered.map((b) => {
-        const color = RARITY_HSL[b.rarity];
+        const isMysteryMode = catalogId === "murder-mystery-2";
+        const color = isMysteryMode ? "334 78% 69%" : RARITY_HSL[b.rarity];
+        const rarity = isMysteryMode ? "GODLY" : RARITY_LABEL[b.rarity];
         return (
           <article
             key={b.name}
@@ -411,7 +413,7 @@ const CatalogSection = ({
               className="text-center mb-2 md:mb-3 rounded-lg py-1.5 md:py-1.5 font-black text-xs md:text-xs tracking-widest"
               style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
             >
-              {RARITY_LABEL[b.rarity]}
+              {rarity}
             </div>
 
             <button
