@@ -47,12 +47,12 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
 
 const MURDER_MYSTERY_2_ITEMS: Item[] = [
   { name: "Heartblade",                rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_p6mfssp6mfssp6mf.png`, income: 0, priceTag: "1.59" },
-  { name: "Icebeam",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "18 грн" },
-  { name: "Luger",                     rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_luger.png`, income: 0, priceTag: "35" },
-  { name: "Batwing",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_batwing.png`, income: 0, priceTag: "40" },
-  { name: "Darkbringer",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_darkbringer.png`, income: 0, priceTag: "30" },
-  { name: "Nebula",                    rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_nebula.png`, income: 0, priceTag: "10" },
-  { name: "Bioblade",                  rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_bioblade.png`, income: 0, priceTag: "7" },
+  { name: "Icebeam",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "0.44" },
+  { name: "Luger",                     rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_luger.png`, income: 0, priceTag: "0.85" },
+  { name: "Batwing",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_batwing.png`, income: 0, priceTag: "0.98" },
+  { name: "Darkbringer",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_darkbringer.png`, income: 0, priceTag: "0.73" },
+  { name: "Nebula",                    rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_nebula.png`, income: 0, priceTag: "0.24" },
+  { name: "Bioblade",                  rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_bioblade.png`, income: 0, priceTag: "0.17" },
 ];
 
 export const CATALOGS: Catalog[] = [

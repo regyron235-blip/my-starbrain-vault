@@ -102,6 +102,12 @@ export const REAL_PRICE_USD: Record<string, number> = {
   "600M": 0.85, // ~35 ₴
   "2":    1.8,  // ~74 ₴
   "1.59": 1.59, // ~65 ₴ (Heartblade)
+  "0.44": 0.44, // ~18 грн (Icebeam)
+  "0.85": 0.85, // ~35 грн (Luger)
+  "0.98": 0.98, // ~40 грн (Batwing)
+  "0.73": 0.73, // ~30 грн (Darkbringer)
+  "0.24": 0.24, // ~10 грн (Nebula)
+  "0.17": 0.17, // ~7 грн (Bioblade)
 };
 
 const t = <T extends Record<Lang, string>>(o: T) => o;
