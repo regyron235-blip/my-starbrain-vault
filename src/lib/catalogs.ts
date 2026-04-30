@@ -47,7 +47,7 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
 
 const MURDER_MYSTERY_2_ITEMS: Item[] = [
   { name: "Heartblade",                rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_p6mfssp6mfssp6mf.png`, income: 0, priceTag: "1.59" },
-  { name: "Icebeam",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_icebeam.png`, income: 0, priceTag: "18" },
+  { name: "Icebeam",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "18 грн" },
   { name: "Luger",                     rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_luger.png`, income: 0, priceTag: "35" },
   { name: "Batwing",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_batwing.png`, income: 0, priceTag: "40" },
   { name: "Darkbringer",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_darkbringer.png`, income: 0, priceTag: "30" },
