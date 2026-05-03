@@ -46,7 +46,7 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
-const MM2_DEFAULT_IMAGE = `${import.meta.env.BASE_URL}placeholder.svg`;
+const MM2_DEFAULT_IMAGE = `${import.meta.env.BASE_URL}mm2-godly-placeholder.svg`;
 const MURDER_MYSTERY_2_ITEMS: Item[] = [
   { name: "Heartblade",      rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_p6mfssp6mfssp6mf.png`, income: 0, priceTag: "1.59" },
   { name: "Icebeam",         rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "0.44" },

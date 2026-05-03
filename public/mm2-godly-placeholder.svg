@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F1634"/>
+      <stop offset="1" stop-color="#0F0A1E"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="155" y1="122" x2="373" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8E7FF"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="hilt" x1="179" y1="334" x2="333" y2="406" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F472B6"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <filter id="glow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feBlend in="SourceGraphic" in2="blur" mode="screen"/>
+    </filter>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="64" fill="url(#bg)"/>
+  <g opacity="0.22" filter="url(#glow)">
+    <circle cx="138" cy="138" r="56" fill="#F472B6"/>
+    <circle cx="382" cy="374" r="64" fill="#8B5CF6"/>
+  </g>
+  <g transform="rotate(-20 256 256)">
+    <path d="M262 124L314 314L282 332L206 166L262 124Z" fill="url(#blade)"/>
+    <rect x="224" y="314" width="92" height="18" rx="9" fill="url(#hilt)"/>
+    <rect x="244" y="330" width="52" height="58" rx="16" fill="#312E81"/>
+    <rect x="256" y="348" width="28" height="22" rx="8" fill="#EC4899"/>
+  </g>
+  <text x="256" y="452" text-anchor="middle" fill="#F9A8D4" font-size="30" font-family="Arial, sans-serif" font-weight="700" letter-spacing="4">GODLY</text>
+</svg>
