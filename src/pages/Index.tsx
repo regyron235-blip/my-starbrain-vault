@@ -88,8 +88,10 @@ const Index = () => {
     
     // Parse price function
     const parsePrice = (priceTag: string): number => {
-      const num = parseInt(priceTag.replace(/[BM]/g, ""));
-      if (priceTag.includes("B")) return num * 1_000; // Convert billions to millions
+      const normalized = priceTag.trim();
+      const num = Number.parseFloat(normalized.replace(/[BM]/g, ""));
+      if (Number.isNaN(num)) return 0;
+      if (normalized.includes("B")) return num * 1_000; // Convert billions to millions
       return num;
     };
     
@@ -116,8 +118,11 @@ const Index = () => {
     { id: "theme",   icon: Sparkles,      label: "Тема" },
   ];
 
-  const priceFor = (b: Brainrot) =>
-    formatPrice(REAL_PRICE_USD[b.priceTag] ?? 0, currentLang.currency);
+  const priceFor = (b: Brainrot) => {
+    const fallbackUsd = Number.parseFloat(b.priceTag) || 0;
+    const usd = REAL_PRICE_USD[b.priceTag] ?? fallbackUsd;
+    return formatPrice(usd, currentLang.currency);
+  };
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
@@ -471,6 +476,7 @@ const BrainrotDialog = ({
 }) => {
   const open = brainrot !== null;
   const color = brainrot ? RARITY_HSL[brainrot.rarity] : "var(--secret)";
+  const isMM2Item = brainrot?.category === "mm2";
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
       <DialogContent
@@ -488,7 +494,7 @@ const BrainrotDialog = ({
                 className="text-center mb-4 rounded-lg py-1.5 font-black text-xs tracking-widest"
                 style={{ backgroundColor: `hsl(${color} / 0.15)`, color: `hsl(${color})` }}
               >
-                {RARITY_LABEL[brainrot.rarity]}
+                {isMM2Item ? "GODLY" : RARITY_LABEL[brainrot.rarity]}
               </div>
               <div className="flex items-center justify-center h-56">
                 <img
@@ -504,14 +510,16 @@ const BrainrotDialog = ({
             </DialogHeader>
 
             <div className="px-6 pb-6 space-y-4">
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="rounded-lg bg-secondary/50 p-3">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("income")}</p>
-                  <p className="font-bold flex items-center gap-1" style={{ color: `hsl(${color})` }}>
-                    <Zap className="h-3.5 w-3.5" />
-                    {formatIncome(brainrot.income, t("perSec"))}
-                  </p>
-                </div>
+              <div className={`grid gap-2 text-sm ${isMM2Item ? "grid-cols-1" : "grid-cols-2"}`}>
+                {!isMM2Item && (
+                  <div className="rounded-lg bg-secondary/50 p-3">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("income")}</p>
+                    <p className="font-bold flex items-center gap-1" style={{ color: `hsl(${color})` }}>
+                      <Zap className="h-3.5 w-3.5" />
+                      {formatIncome(brainrot.income, t("perSec"))}
+                    </p>
+                  </div>
+                )}
                 <div className="rounded-lg bg-secondary/50 p-3">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">{t("price")}</p>
                   <p className="font-bold">{priceFor(brainrot)}</p>

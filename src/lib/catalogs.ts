@@ -20,6 +20,7 @@ export interface Item {
   image: string;
   income: number;
   priceTag: string;
+  category?: "brainrot" | "mm2";
 }
 
 export interface Catalog {
@@ -45,14 +46,46 @@ const STEAL_IN_BRAINROT_ITEMS: Item[] = [
   { name: "La Vacca Saturno Saturnita",rarity: "secret", image: vaccaSaturno,         income: 250_000,    priceTag: "50M" },
 ];
 
+const MM2_DEFAULT_IMAGE = `${import.meta.env.BASE_URL}placeholder.svg`;
 const MURDER_MYSTERY_2_ITEMS: Item[] = [
-  { name: "Heartblade",                rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_p6mfssp6mfssp6mf.png`, income: 0, priceTag: "1.59" },
-  { name: "Icebeam",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "0.44" },
-  { name: "Luger",                     rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_luger.png`, income: 0, priceTag: "0.85" },
-  { name: "Batwing",                   rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_batwing.png`, income: 0, priceTag: "0.98" },
-  { name: "Darkbringer",               rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_darkbringer.png`, income: 0, priceTag: "0.73" },
-  { name: "Nebula",                    rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_nebula.png`, income: 0, priceTag: "0.24" },
-  { name: "Bioblade",                  rarity: "secret", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_bioblade.png`, income: 0, priceTag: "0.17" },
+  { name: "Heartblade",      rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_p6mfssp6mfssp6mf.png`, income: 0, priceTag: "1.59" },
+  { name: "Icebeam",         rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_7ddbi27ddbi27ddb.png`, income: 0, priceTag: "0.44" },
+  { name: "Batwing",         rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_batwing.png`, income: 0, priceTag: "0.98" },
+  { name: "Nebula",          rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_nebula.png`, income: 0, priceTag: "0.24" },
+  { name: "Bioblade",        rarity: "secret", category: "mm2", image: `${import.meta.env.BASE_URL}Gemini_Generated_Image_bioblade.png`, income: 0, priceTag: "0.17" },
+  { name: "Boneblade",       rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.19" },
+  { name: "Candleflame",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "3.10" },
+  { name: "Cookieblade",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.12" },
+  { name: "Deathshard",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.16" },
+  { name: "Eggblade",        rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.10" },
+  { name: "Eternal",         rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.13" },
+  { name: "Eternal II",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.12" },
+  { name: "Eternal III",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.10" },
+  { name: "Eternal IV",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.09" },
+  { name: "Fang",            rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.15" },
+  { name: "Flames",          rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.18" },
+  { name: "Gemstone",        rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.15" },
+  { name: "Ghostblade",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.16" },
+  { name: "Hallows Blade",   rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.12" },
+  { name: "Heat",            rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.20" },
+  { name: "Ice Dragon",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.14" },
+  { name: "Ice Shard",       rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.15" },
+  { name: "Nightblade",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.14" },
+  { name: "Orange Seer",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.13" },
+  { name: "Peppermint",      rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.13" },
+  { name: "Pixel",           rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.20" },
+  { name: "Prismatic",       rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.10" },
+  { name: "Purple Seer",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.13" },
+  { name: "Red Seer",        rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.14" },
+  { name: "Saw",             rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.18" },
+  { name: "Seer",            rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.06" },
+  { name: "Slasher",         rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.17" },
+  { name: "Spider",          rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.17" },
+  { name: "Tides",           rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.17" },
+  { name: "Vampire's Edge",  rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.11" },
+  { name: "Virtual",         rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.15" },
+  { name: "Winter's Edge",   rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.11" },
+  { name: "Yellow Seer",     rarity: "secret", category: "mm2", image: MM2_DEFAULT_IMAGE, income: 0, priceTag: "0.13" },
 ];
 
 export const CATALOGS: Catalog[] = [
